@@ -1,0 +1,95 @@
+\ProvidesPackage{_thm_styles}
+
+\ProcessOptions\relax
+
+
+\RequirePackage{amsthm}
+\RequirePackage{thmtools}
+\RequirePackage{chngcntr}
+
+
+\declaretheoremstyle[
+    headfont=\bfseries\color{probC},
+    headpunct={.},
+    postheadspace={7pt},
+    spaceabove=\envskip,
+    spacebelow=.5\envskip,
+    notebraces={(}{)},
+    notefont=\color{probC}\mdseries,
+]{problemstyle}
+
+\declaretheoremstyle[
+    headfont=\itshape\color{thmC},
+    headpunct={ \color{thmC}--- },
+    postheadspace={0pt},
+    spaceabove=.7\envskip,
+    spacebelow=0,
+    notebraces={(}{)},
+    notefont=\color{thmC}\mdseries\normalfont,
+]{claimstyle}
+
+\declaretheoremstyle[
+    headfont=\bfseries\color{thmC},
+    headpunct={ \color{thmC}\textbf{---} },
+    postheadspace={0pt},
+    spaceabove=.7\envskip,
+    spacebelow=.5\envskip,
+    notebraces={(}{)},
+    notefont=\color{thmC}\mdseries\normalfont,
+]{thmstyle}
+
+\declaretheoremstyle[
+    headfont=\bfseries\color{thmC},
+    headindent={-3pt},
+    postheadspace={5pt},
+    notebraces={}{},
+    headpunct={},
+    notefont=\bfseries\color{thmC},
+]{emptythmstyle}
+
+\declaretheoremstyle[
+    headfont=\bfseries\color{defC},
+    bodyfont=\mdseries,
+    spaceabove=.7\envskip,
+    % spacebelow=0pt,
+    headpunct={ --- },
+]{definitionstyle}
+
+\declaretheoremstyle[
+    headfont=\bfseries\color{solC},
+    notebraces={[}{]},
+    headpunct={. },
+    spaceabove=.8\envskip,
+    spacebelow=.8\envskip,
+]{solutionstyle}
+
+\declaretheoremstyle[
+    headpunct={ \color{thmC}\textbf{---} },
+    headfont=\itshape\rmfamily\bfseries\color{thmC},
+    spaceabove=15pt,
+    spacebelow=-5pt,
+    headpunct={--- },
+    bodyfont=\color{solC},
+]{solnDefStyle}
+
+\declaretheoremstyle[
+    headfont=\bfseries,
+    spaceabove=0pt,
+    spacebelow=10pt,
+    postheadspace=0pt,
+    headpunct={},
+]{hintstyle}
+
+\declaretheoremstyle[
+    headfont=\bfseries,
+    spaceabove=\envskip,
+    spacebelow=.4\envskip,
+    headpunct={. },
+]{remarkstyle}
+
+\declaretheoremstyle[
+    headfont=\bfseries,
+    spaceabove=1\envskip,
+    spacebelow=1\envskip,
+    headpunct={. },
+]{examplestyle}

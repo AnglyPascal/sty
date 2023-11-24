@@ -1,0 +1,646 @@
+\NeedsTeXFormat{LaTeX2e}
+\ProvidesPackage{_code}
+
+\RequirePackage{listings, relsize}
+
+\def\keywordstyle{\bfseries\color{thmC}}
+\def\typestyle{\bfseries\color{thmC!70}}
+\def\numberstyle{\ttfamily\codefontsize\smaller[1]\color{fgC!60}}
+\def\stringstyle{\codefontsize\color{probC}}
+\def\commentstyle{\color{fgC!70!pageC!80!thmC}}
+\def\identifierstyle{\singleUpperCase{\bfseries\color{thmC!90}}}
+\def\errorstyle{\bfseries\color{NordRed!90!black}}
+\def\funcstyle{\color{thmC}}
+\def\dfsstyle{\color{thmC}}
+\def\conststyle{\bfseries\color{defC}}
+\def\regstyle{\bfseries\color{fgC!80!pageC}}
+\def\codefontsize{\small}
+\def\backgroundstyle{\color{defBgC!20!pageC}}
+
+\lstdefinestyle{numbers}{
+    numbers=left,
+    xleftmargin=13pt,
+    numbersep=5pt,
+    numberstyle=\numberstyle,
+    stepnumber=1,
+}
+
+\lstdefinestyle{fonts}{
+    basicstyle=\linespread{1}\codefontsize\ttfamily,
+    commentstyle=\commentstyle,
+    stringstyle=\stringstyle,
+    showstringspaces=false,
+    breaklines=true,
+    belowskip=-.2\envskip,
+    keepspaces,
+}
+
+\lstdefinestyle{colors}{
+    keywordstyle=\keywordstyle,
+    backgroundcolor=\backgroundstyle,
+    frame=tb,
+    rulecolor=\color{defC},
+    literate=*
+        {(}{{\textcolor{fgC!40!pageC}{(}}}{1}
+        {)}{{\textcolor{fgC!40!pageC}{)}}}{1}
+        {[}{{\textcolor{fgC!40!pageC}{[}}}{1}
+        {]}{{\textcolor{fgC!40!pageC}{]}}}{1}
+        {;}{{\textcolor{fgC!60!pageC}{;}}}{1}
+        {\{}{{\textcolor{thmC}{\{}}}{1}
+        {\}}{{\textcolor{thmC}{\}}}}{1},
+}
+
+\patchcmd{\lsthk@SelectCharTable}{`)}{``}{}{}
+
+%\newcommand*\idstyle{%
+%    \expandafter\id@style\the\lst@token\relax
+%}
+%\def\id@style#1#2\relax{%
+%    \ifcat#1\relax
+%    \else
+%        \ifnum`#1=\uccode`#1%
+%            \ifx#2\empty
+%            \else
+%                \idstylenext{#2}%
+%            \fi
+%        \fi
+%    \fi
+%}
+
+%%todo: word starting with capital letter followed by two of the same lower case letterss
+%% i.e. Assume, Array produces umeAssume and ayArray.
+
+%\newcommand*\idstylenext[1]{%
+%    \id@stylenext#1\relax%
+%}
+%\def\id@stylenext#1#2\relax{%
+%    \ifcat#1\relax\else
+%        \ifnum`#1=\uccode`#1%
+%            \identifierstyle%
+%        \fi
+%    \fi
+%}
+
+\newcommand*\singleUpperCase[1]{%
+    \def\herestyle{#1}\expandafter\id@singleUpperCase\the\lst@token\relax
+}
+\def\id@singleUpperCase#1#2\relax{%
+    \ifcat#1\relax
+    \else
+        \ifcat#1\string_%
+            \ifnum`#1=\uccode`#1%
+                \herestyle%
+            \fi%
+        \fi
+    \fi
+}
+
+
+\lstdefinestyle{mytex}{
+    language=[LaTeX]Tex,
+    style=numbers,
+    style=fonts,
+    style=colors,
+    morekeywords={RequirePackage,ProvidesPackage,NeedsTeXFormat},
+    emph={[2]
+        prob, den, thm, lem, thmbox, denbox, color, 
+        fig, figdf, proof, solu
+    },
+    emphstyle={[2]\color{thmC}},
+    emph={[3]enumerate},
+    emphstyle={[3]\color{NordRed}},
+}
+
+\lstdefinestyle{myjava}{
+    language=Java,
+    style=numbers,
+    style=colors,
+    style=fonts,
+    keywordstyle=\color{impC},
+    basewidth={0.6em,0.4em},
+    morekeywords={require},
+    escapeinside={(*}{*)},
+}
+
+\lstdefinestyle{myscala}{
+    language=Scala,
+    style=numbers,
+    style=colors,
+    style=fonts,
+    identifierstyle=\singleUpperCase{\typestyle\color{thmC}},
+    basewidth={0.6em,0.4em},
+    morekeywords={
+        alt, repeat, serve, thread, require, var, val, until, to,
+        synchronized, wait, notify, notifyAll, 
+    },
+    emph={[2]true, false, null},
+    emphstyle={[2]\conststyle},
+    % emph={[3]
+    %     Int, Integer, Double, Array, String, 
+    %     Unit, Boolean, Set, List, A, Node, Tree,
+    %     state, init, DTI, Abs
+    % },
+    % emphstyle={[3]\typestyle},
+    emph={[4]next, toString},
+    emphstyle={[4]\funcstyle},
+    escapeinside={(*}{*)},
+    % mathescape=true,
+    tabsize=2,
+    literate=*
+        {!}{{\textbf{!}}}{1}
+        {?}{{\textbf{?}}}{1}
+        % {`}{{'}}{1}
+        {;}{{\textcolor{fgC!60!pageC}{;}}}{1}
+        {=>}{{\textcolor{fgC!60!pageC}{=>}}}{2}
+        {||}{{\textbf{||}}}{2}
+        {\{}{{\textcolor{thmC}{\{}}}{1}
+        {\}}{{\textcolor{thmC}{\}}}}{1},
+}
+
+\lstdefinestyle{myalgo}{
+    style=numbers,
+    style=colors,
+    style=fonts,
+    mathescape=true,
+    % escapeinside={\\(}{\\)},
+    sensitive=false,
+    morecomment=[l]{//},
+    morecomment=[s]{/*}{*/},
+    morestring=[b]",
+    identifierstyle=\identifierstyle,
+    morekeywords={
+        for, return, true, false, datatype, function, 
+        to, if, else, foreach, while, begin, end, downto,
+        do, then, loop, goto,
+    },
+    basewidth={0.6em,0.4em},
+    emph={[2]Stack, Queue, Bag, PriorityQueue, UnionFind, uf},
+    emphstyle={[2]\dfsstyle},
+    literate=*
+        {<-}{{\textcolor{fgC!80!pageC}{<-}}}{2}
+        {->}{{\textcolor{fgC!80!pageC}{->}}}{2}
+        {\{}{{\textcolor{thmC}{\{}}}{1}
+        {\}}{{\textcolor{thmC}{\}}}}{1},
+}
+
+\lstdefinestyle{mydiff}{
+    style=numbers,
+    style=fonts,
+    style=colors,
+    identifierstyle=\singleUpperCase{\identifierstyle},
+    tabsize=2,
+    basewidth={0.6em,0.4em},
+    breaklines=true,
+    morecomment=[l]{@},
+    morecomment=[f][\bfseries\rmfamily]{diff},
+    morecomment=[f][\color{gray}]{index},
+    morecomment=[f][\color{NordViolet}]{@@},
+    morecomment=[f][\color{NavyBlue}]{+},
+    morecomment=[f][\color{NordRed}]{-},
+}
+
+\lstdefinestyle{myocaml}{
+    language=caml,
+    style=numbers,
+    style=fonts,
+    backgroundcolor=\color{defBgC!50!white},
+    frame=tb,
+    identifierstyle=\identifierstyle,
+    tabsize=2,
+    basewidth={0.6em,0.4em},
+    stringstyle=\stringstyle,
+    commentstyle=\commentstyle,
+    morekeywords={option, when, rule},
+    emph={[3]sem_error, error},
+    emphstyle={[3]\errorstyle},
+    emph={[4]check_stmt, check_expr, check_var, assign_type, expr_type},
+    emphstyle={[4]\funcstyle},
+    emph={[5]
+        fList, fType, fExpr, fBasic, fMeta, fStr, 
+        int, ident, string, list, ptype, name, expr, 
+        def, expr_guts, stmt, code,
+        op, codelab, program, reg, symbol, operand, unit, optree, 
+    },
+    emphstyle={[5]\typestyle},
+    literate=*
+        % {[}{{\textcolor{fgC!40!pageC}{[}}}{1}
+        % {]}{{\textcolor{fgC!40!pageC}{]}}}{1}
+        % {<}{{\textcolor{NavyBlue}{<}}}{1}
+        % {>}{{\textcolor{NavyBlue}{>}}}{1}
+        % {->}{{\textcolor{NordBlue}{->}}}{2}
+        % {<>}{{\textcolor{NordBlue}{<>}}}{2}
+        % {::}{{\textcolor{NordRed}{::}}}{2}
+        % {||}{{\textcolor{NordBlue}{||}}}{2}
+        % {@}{{\textcolor{NordRed}{@}}}{1}
+        % {;}{{\textcolor{fgC!60!pageC}{;}}}{1}
+        % {\{}{{\textcolor{thmC}{\{}}}{1}
+        % {\}}{{\textcolor{thmC}{\}}}}{1},
+}
+
+
+\lstdefinestyle{mykeiko}{
+    style=numbers,
+    style=fonts,
+    style=colors,
+    backgroundcolor=\color{pageC},
+    identifierstyle=\identifierstyle,
+    mathescape=true,
+    frame=,
+    tabsize=2,
+    basewidth={0.6em,0.4em},
+    commentstyle=\color{fgC!60!pageC}\ttfamily,
+    morekeywords={
+        mov, stmfd, ldr, str, bl, add, sub, ldmfd, b, cmp, bge
+    },
+    morecomment=[l]{!},
+    emph={[3]
+        r0, r1, r2, r3, r4, r5, r6, r7, r8, r9, r10, 
+        r11, sp, fp, ip, lr
+    },
+    emphstyle={[3]\regstyle},
+    emph={[4]picoPascal, data, byte, global, text, comm, pool},
+    emphstyle={[4]\keywordstyle},
+    % emph={[5]},
+    % emphstyle={[5]\color{NordBrightBlue}},
+    literate=*
+        {<}{{{\commentstyle{<}}}}{1}
+        {>}{{{\commentstyle{>}}}}{1}
+}
+
+\lstdefinestyle{myx86}{
+    language={[x86masm]Assembler},
+    style=numbers,
+    style=fonts,
+    style=colors,
+    frame=,
+    backgroundcolor=\color{pageC},
+    identifierstyle=\identifierstyle,
+    mathescape=false,
+    tabsize=2,
+    basewidth={0.6em,0.4em},
+    escapeinside={(*}{*)},
+    commentstyle=\color{fgC!60!pageC}\ttfamily,
+    morekeywords={
+        lsl, mov, stmfd, ldr, str, bl, add, sub, ldmfd, b, 
+        cmp, bge, mul, mvn, eor, neg, and, orr, lsr, asr, 
+        ldrb, set, regvar, blx, ldrlo, strb, seths, blhs,
+        moveq, movne, movgt, movge, movlt, movle, 
+        beq, bne, bgt, bge, blt, ble,
+        movb, movw, movl, movq, movs, movz,
+        movsbw, movsbl, movswl, movsbq, movswq, movslq,
+        movzbw, movzbl, movzwl, movzwq, movzbq, movabsq, movzlq,
+        popq, addq, pushq, subq, imulq, 
+        addl, addw, addb, subl, subw, subb, shlq,
+        salb, salw, mulq, cqto, idivq, divq,
+        call, ret, leaq, xorl, jne, leave, 
+        sete, setne, sets, setns, setg, setge, setl, setle, seta, setae,
+        setb, setbe, setz, setnz, setnle, setnl, setnge, setng, setnbe,
+        setnb, setngae, setna, xorb, decq, incl, cmpl, cmpq,
+        jmp, je, js, jns, jg, jge, jl, jle, ja, jae, jb, jbe,
+        jz, jnz, jnle, jnl, jnge, jng, jnbe, jnb, jnae, jna,
+        cmove, cmovne, cmovs, cmovns, cmovg, cmovge, cmovl, cmovle, 
+        cmova, cmovae, cmovb, cmovbe, cmovz, cmovnz, cmovnle, cmovnl, 
+        cmovnge, cmovng, cmovbne,
+        cmovnb, cmovnae, cmovna, sarq, imull, andq, xorq,
+        testl, andl, negl, incq, decl, retq,
+        % simd
+        movdqa, paddd, vmovdqu, vpaddd, mulsd,
+        % y86 specifics
+        halt, nop, rrmovq, irmovq, rmmovq, mrmovq, jXX, cmovXX,
+        % FTU
+        fldt, fmulp, 
+    },
+    morecomment=[l]{\#},
+    emph={[3]
+        rax, rbx, rcx, rdx, rbp, rsp, rsi, rdi, rip,
+        eax, ebx, ecx, edx, ebp, esp, esi, edi,
+        r8, r9, r10, r11, r12, r13, r14, r15, 
+        r8d, r9d, r10d, r11d, r12d, r13d, r14d, r15d, 
+        ax, bx, cx, dx, si, di, bp, sp,
+        r8w, r9w, r10w, r11w, r12w, r13w, r14w, r15w, 
+        al, bl, cl, dl, sil, dil, bpl, spl,
+        r8b, r9b, r10b, r11b, r12b, r13b, r14b, r15b, 
+        bp, fp, sp, c1, dxl, cxl,
+        % simd
+        xmm0, ymm0, zmm0, xmm1, ymm1, zmm1,
+        xmm, ymm, zmm,
+        % y86 specifics
+        A, B, ri,
+        % FTU
+        st,
+    },
+    emphstyle={[3]\regstyle},
+    emph={[4]
+        .cfi_startproc, .cfi_endproc, .cfi_def_cfa_register, 
+        .cfi_offset, .cfi_def_cfa_offset, .cfi_def_cfa, 
+    },
+    emphstyle={[4]\funcstyle},
+    emph={[5]
+        .text, .data, .globl, .size, .string, .file, 
+        .type, .section, .ident, .asciz
+    },
+    emphstyle={[5]\funcstyle},
+    literate=*
+        {<-}{{{\regstyle<-}}}{2}
+        {\%}{{{\regstyle\%}}}{1}
+}
+
+\lstdefinestyle{myarm}{
+    style=numbers,
+    style=fonts,
+    style=colors,
+    frame=,
+    backgroundcolor=\color{pageC},
+    identifierstyle=\identifierstyle,
+    mathescape=true,
+    tabsize=2,
+    basewidth={0.6em,0.4em},
+    morekeywords={
+        lsl, mov, stmfd, ldr, str, bl, add, sub, ldmfd, b, 
+        cmp, bge, mul, mvn, eor, neg, and, orr, lsr, asr, 
+        ldrb, set, regvar, blx, ldrlo, strb, seths, blhs,
+        moveq, movne, movgt, movge, movlt, movle,
+        beq, bne, bgt, bge, blt, ble,
+        movw, movt, asl, ret, csel,
+        % simd
+        vadd.i32, sadd8, 
+    },
+    morecomment=[l]{@},
+    morecomment=[l]{//},
+    emph={[3]
+        r0, r1, r2, r3, r4, r5, r6, r7, 
+        r8, r9, r10, r11, r12, r13, r14, r15,
+        sp, fp, ip, lr, pc,
+        rd, rm, rn, rs,
+        % simd
+        d0, d1, d, q,
+        q0, q1, q2, q3, 
+        v1.4s, v2.4s, v3.4s,
+    },
+    emphstyle={[3]\regstyle},
+    literate=,
+}
+
+\lstdefinestyle{mypascal}{
+    language=Pascal,
+    style=numbers,
+    style=fonts,
+    style=colors,
+    escapeinside={[*}{*]},
+    identifierstyle=\identifierstyle,
+    morestring=*[d]{"},
+    mathescape=true,
+    tabsize=2,
+    basewidth={0.6em,0.4em},
+    morecomment=[s]{(*}{*)},
+    morekeywords={
+        self, super, loop, local, proc, 
+        elsif, elif, exit, next
+    },
+    emph={[1]integer, array, pointer, boolean, string},
+    emphstyle={[1]\typestyle},
+}
+
+\lstdefinestyle{myhaskell}{
+    language=Haskell,
+    style=numbers,
+    style=fonts,
+    style=colors,
+    identifierstyle=\identifierstyle,
+    mathescape=true,
+    basewidth={0.6em,0.4em},
+    morekeywords={fold, unfold, scan, Parser, Expr},
+    commentstyle=\color{fgC!60!pageC}\ttfamily,
+    % keywordstyle=\color{NordBrightBlue},
+    moredelim=[s][\color{fgC!60!pageC}\Share\bfseries\small]{-\{}{-\}},
+    morecomment=[l]{--},
+    emph={[3]f, g},
+    emphstyle={[3]\bfseries},
+    emph={[4]h, t},
+    emphstyle={[4]\bfseries},
+    emph={[5]p, c, s},
+    emphstyle={[5]},
+    literate=*
+        {<-}{{\textcolor{fgC!80!pageC}{<-}}}{2}
+        {->}{{\textcolor{fgC!80!pageC}{->}}}{2}
+        {\{}{{\textcolor{thmC}{\{}}}{1}
+        {\}}{{\textcolor{thmC}{\}}}}{1},
+}
+
+\lstdefinestyle{mymd}{
+    style=numbers,
+    style=fonts,
+    style=colors,
+    mathescape=true,
+    morecomment=[l]{\#},
+}
+
+\lstdefinestyle{myyml}{
+    style=fonts,
+    style=colors,
+    backgroundcolor=,
+    morecomment=[l]{\#},
+}
+
+\lstdefinestyle{myhtml}{
+    language=HTML,
+    style=numbers,
+    style=fonts,
+    style=colors,
+    mathescape=true,
+    literate=,
+    morecomment=[s][\color{NordViolet}]{\{\{}{\}\}} 
+}
+
+
+\lstdefinestyle{mypy}{
+    language=Python,
+    style=numbers,
+    style=fonts,
+    style=colors,
+    morekeywords={def},
+    emph={[2]return},
+    emphstyle={[2]\color{thmC}},
+}
+
+\lstdefinestyle{myconsole}{
+    language=Bash,
+    style=numbers,
+    style=fonts,
+    style=colors,
+    morekeywords={gdb, gcc, make, python},
+    emph={[2]echo, history, rg, grep},
+    emphstyle={[2]\funcstyle},
+    emph={[3]
+    },
+    emphstyle={[3]\typestyle},
+}
+
+\lstdefinestyle{mymake}{
+    language=Make,
+    style=numbers,
+    style=fonts,
+    style=colors,
+    morekeywords={},
+    emph={[2]main, printf},
+}
+
+\lstdefinestyle{myc}{
+    language=C,
+    style=numbers,
+    style=fonts,
+    style=colors,
+    morekeywords={malloc, calloc, free},
+    emph={[2]main, printf},
+    emphstyle={[2]\funcstyle},
+    emph={[3]
+        int16_t, uint8_t, int8_t, uint64_t, int64_t, int, 
+        short, char, long, double, vector, vase, 
+        vector_size, size_t, float, void, bool,
+    },
+    emphstyle={[3]\typestyle},
+    mathescape=true,
+}
+
+\lstdefinestyle{myr}{
+    language=R,
+    style=numbers,
+    style=fonts,
+    style=colors,
+    morekeywords={sudo, echo},
+    emph={[2]pacman, pip, yay},
+    emphstyle={[2]\color{Cinnabar}},
+    emph={[3]Syu, conf}, 
+    emphstyle={[3]\color{RealGreen}},
+    emph={[4]etc, usr, home, bin},
+    emphstyle={[4]\color{HotPink}},
+    literate=
+        {->}{{\textcolor{SlateGray}{->}}}{1}
+        {>}{{\textcolor{SlateGray}{>}}}{1}
+        {/}{{\textcolor{SlateGray!60!LightGray}{/}}}{1},
+}
+
+\def\backtick{{\rmfamily{\`{}}}}
+\lstdefinestyle{myverilog}{
+    language=verilog,
+    style=numbers,
+    style=fonts,
+    style=colors,
+    morekeywords={
+        NOR, NAND, NOT, clock, 
+        icode, ifun, rA, rB, 
+        valP, valC, srcA, srcB, dstE, dstM,
+    },
+    emph={[2]},
+    escapeinside={(*}{*)},
+    emphstyle={[2]\color{Cinnabar}},
+}
+
+\lstdefinestyle{myhcl}{
+    style=numbers,
+    style=colors,
+    style=fonts,
+    mathescape=true,
+    sensitive=false,
+    morestring=[b]",
+    % identifierstyle=\identifierstyle,
+    morecomment=[l]{\#},
+    morekeywords={
+        in, 
+        IHALT, INOP, IRRMOVQ, IIRMOVQ, IMRMOVQ, IRMMOVQ, 
+        IOPL, IJXX, ICALL, IOPQ, IRET, IPUSHQ, IPOPQ, FNONE, 
+        RRSP, RNONE, ALUADD, SAOK, SADR, SINS, SHLT, IOPQ,
+    },
+    basewidth={0.6em,0.4em},
+    emph={[2]word, int, bool},
+    emphstyle={[2]\typestyle},
+    emph={[3]imem_error, instr_valid, dmem_error}
+    emphstyle={[3]\errorstyle},
+    emph={[4] 
+        D_icode, E_icode, M_icode, W_icode, f_icode,
+        d_srcA, d_srcB, 
+        E_stat, D_stat, M_stat, W_stat, m_stat, 
+        W_valM, E_dstM, 
+        e_dstE, e_valE, M_dstM, m_valM, m_dstE, m_valE,
+        W_dstM, W_dstE, W_valE, d_rvalA, D_valP, d_valA,
+        M_Cnd, M_valA, e_Cnd, f_valC,
+        F_predPC, f_valP, f_pc, f_valP,
+        F_stall, D_bubble, 
+        icode, ifun, 
+        valP, valC, srcA, srcB, dstE, dstM,
+    },
+    emphstyle={[4]\stringstyle},
+    emph={[5] rA, rB, }
+    emphstyle={[5]\regstyle},
+    literate=*
+        {<-}{{\textcolor{fgC!80!pageC}{<-}}}{2}
+        {->}{{\textcolor{fgC!80!pageC}{->}}}{2}
+        {\{}{{\textcolor{thmC}{\{}}}{1}
+        {\}}{{\textcolor{thmC}{\}}}}{1},
+}
+
+
+\lstdefinestyle{mybash}{
+    language=bash,
+    style=numbers,
+    style=fonts,
+    style=colors,
+    morekeywords={sudo, echo, ls, grep, more, less},
+    emph={[2]pacman, pip, yay},
+    emphstyle={[2]\keywordstyle},
+    emph={[3]Syu, conf}, 
+    emphstyle={[3]\color{RealGreen}},
+    emph={[4]etc, usr, home, bin},
+    emphstyle={[4]\color{HotPink}},
+    literate=
+        {->}{{\textcolor{SlateGray}{->}}}{1}
+        {>}{{\textcolor{SlateGray}{>}}}{1}
+        {/}{{\textcolor{SlateGray!60!LightGray}{/}}}{1},
+}
+
+
+\usepackage{caption}
+% defines algorithm counter for chapter-level
+\newcounter{nalg}[section] 
+%defines appearance of the algorithm counter
+\renewcommand{\thenalg}{\thesection.\arabic{nalg}} 
+% defines a new caption label as Algorithm x.y
+\DeclareCaptionLabelFormat{algocaption}{Algorithm \thenalg} 
+\lstnewenvironment{algorithm}[1][] 
+{   
+    \refstepcounter{nalg}
+    \captionsetup{labelformat=algocaption,labelsep=colon} 
+    \lstset{style=myalgo, caption={[\texttt{#1}]\textbf{#1}}, label={#1}}
+}{}
+
+\DeclareCaptionLabelFormat{scalacaption}{Scala \thenalg} 
+\lstnewenvironment{scala}[1][]
+{   
+    \refstepcounter{nalg}
+    \captionsetup{labelformat=scalacaption,labelsep=colon} 
+    \lstset{style=myscala, caption={[\texttt{#1}]\textbf{#1}}}
+}{}
+
+\DeclareCaptionLabelFormat{javacaption}{Java \thenalg} 
+\lstnewenvironment{java}[1][]
+{   
+    \refstepcounter{nalg}
+    \captionsetup{labelformat=javacaption,labelsep=colon} 
+    \lstset{style=myjava, caption={[\texttt{#1}]\textbf{#1}}}
+}{}
+
+\DeclareCaptionLabelFormat{haskellcaption}{Haskell \thenalg} 
+\lstnewenvironment{haskell}[1][]
+{   
+    \refstepcounter{nalg}
+    \captionsetup{labelformat=haskellcaption,labelsep=colon} 
+    \lstset{style=myhaskell, caption={[\texttt{#1}]\textbf{#1}}}
+}{}
+
+\AtBeginDocument{%
+    \renewcommand\lstlistoflistings{\bgroup
+        \let\contentsname\lstlistlistingname
+        \def\l@lstlisting##1##2{\@dottedtocline{1}{0em}{2em}{\small \texttt{##1}}{\small##2}\vspace{-.7em}}
+        \let\lst@temp\@starttoc \def\@starttoc##1{\lst@temp{lol}}%
+    \tableofcontents \egroup}
+}

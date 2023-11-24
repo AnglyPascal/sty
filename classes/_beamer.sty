@@ -1,0 +1,40 @@
+\ProvidesPackage{_beamer}
+
+\newif\if@beamer@theme@white@is
+\DeclareOption{mono}{\@beamer@theme@white@istrue}
+\DeclareOption{blue}{\@beamer@theme@white@isfalse}
+\DeclareOption{green}{}
+
+\ProcessOptions\relax
+
+\usepackage[english]{babel}
+\usepackage{metalogo}
+
+\AtBeginSection[]{ 
+    \begin{frame}[c,noframenumbering,plain]
+        \tableofcontents[
+            sectionstyle=show/hide,
+            subsectionstyle=show/show/hide
+        ]
+    \end{frame} 
+}
+
+\AtBeginSubsection[]{ 
+    \begin{frame}[c, noframenumbering,plain]
+        \tableofcontents[
+            sectionstyle=show/hide,
+            subsectionstyle=show/shaded/hide
+        ]
+    \end{frame} 
+}
+
+\if@beamer@theme@white@is
+    \usetheme{NordWhite}
+\else
+    \usetheme{NordBlack}
+\fi
+
+\setlength\parindent{0pt}
+\setlength\parskip{\f@size pt}
+
+\setbeamersize{description width=.1em}

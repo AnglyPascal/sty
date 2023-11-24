@@ -1,0 +1,29 @@
+\ProvidesPackage{_oxford}
+
+\ProcessOptions\relax
+
+
+\def\problemSection{
+    \counterwithin{problemBase}{subsection}
+    \counterwithin{ProblemBase}{subsection}
+
+    \makeatletter
+    \renewcommand{\theproblemBase}{\arabic{subsection}.\arabic{problemBase}}
+    \renewcommand{\theProblemBase}{\arabic{subsection}.\arabic{ProblemBase}}
+
+    \renewcommand{\thesubsection}{\arabic{subsection}.}
+    \titlecontents{subsection} [1.5em] {} {{\thecontentslabel} \hspace{.5em}} {} {\titlerule*[.5pc]{.}\contentspage}
+    \makeatother
+}
+
+
+\def\noproblemSection{
+    \counterwithin{problemBase}{section}
+    \counterwithin{ProblemBase}{section}
+    \makeatletter
+    \renewcommand{\theproblemBase}{\arabic{section}.\arabic{subsection}.\arabic{problemBase}}
+    \renewcommand{\theProblemBase}{\arabic{section}.\arabic{subsection}.\arabic{ProblemBase}}
+    \renewcommand{\thesubsection}{\arabic{section}.\arabic{subsection}.}
+    \titlecontents{subsection} [1.5em] {} {{\thecontentslabel} \hspace{.5em}} {} {\titlerule*[.5pc]{.}\contentspage}
+    \makeatother
+}

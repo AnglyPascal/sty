@@ -1,0 +1,26 @@
+\ProvidesPackage{_article}
+
+\ProcessOptions\relax
+
+\usepackage{titlesec}
+
+\titleformat{\section}
+    {\color{thmC}\normalfont\Large\bfseries}
+    {\S \thesection}
+    {.5em}
+    {}
+
+\titleformat{\subsection}
+    {\color{thmC!90!defC}\normalfont\large\bfseries}
+    {\thesubsection}
+    {.5em}
+    {}
+
+\titlespacing*{\section}{0pt}{6ex plus 1ex minus 1ex}{3ex plus .2ex}
+\titlespacing*{\subsection}{0pt}{4ex plus 1ex minus 1ex}{1ex plus .2ex}
+
+\usepackage[a4paper, margin=1in]{geometry}
+
+\setlength\parindent{0pt}
+\setlength\parskip{10pt}
+

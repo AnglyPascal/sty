@@ -1,0 +1,94 @@
+\ProvidesPackage{_thm_base}
+
+\ProcessOptions\relax
+
+
+\declaretheorem[style=thmstyle, name=Theorem,
+numberwithin=section]{theoremBase}
+\declaretheorem[style=thmstyle, name=Theorem, sibling=theoremBase]{theoremBase*}
+\declaretheorem[style=thmstyle, name=Theorem, sibling=theoremBase]{TheoremBase}
+
+\declaretheorem[style=thmstyle, name=Lemma, sibling=theoremBase]{lemmaBase}
+\declaretheorem[style=thmstyle, name=Lemma, sibling=theoremBase]{lemmaBase*}
+
+\declaretheorem[style=thmstyle, name=Proposition,
+sibling=theoremBase]{propositionBase}
+\declaretheorem[style=thmstyle, name=Proposition,
+sibling=theoremBase]{propositionBase*}
+
+\declaretheorem[style=thmstyle, name=Corollary,
+sibling=theoremBase]{corollaryBase}
+\declaretheorem[style=thmstyle, name=Corollary,
+sibling=theoremBase]{corollaryBase*}
+
+\declaretheorem[style=emptythmstyle, name=, numbered=no]{emptythm}
+
+
+\tcolorboxenvironment{theoremBase}{ thmStyle=1 }
+\tcolorboxenvironment{theoremBase*}{ thmFancyStyle=1.1 }
+
+\tcolorboxenvironment{lemmaBase}{ thmStyle=1 }
+\tcolorboxenvironment{lemmaBase*}{ thmFancyStyle=1.1 }
+
+\tcolorboxenvironment{corollaryBase}{ thmStyle=1 }
+\tcolorboxenvironment{corollaryBase*}{ thmFancyStyle=1.1 }
+
+\tcolorboxenvironment{propositionBase}{ thmStyle=1 }
+\tcolorboxenvironment{propositionBase*}{ thmFancyStyle=1.1 }
+
+\tcolorboxenvironment{TheoremBase}{ 
+    theoremFancyColors,
+    theoremOuterSpacing=1.1, 
+    theoremInnerSpacing,
+    borderline={.05em}{0pt}{thmC}, 
+    top=.3\envskip,
+    bottom=.3\envskip 
+}
+
+\tcolorboxenvironment{emptythm}{ 
+    theoremFancyColors,
+    theoremOuterSpacing=1,     
+    theoremInnerSpacing,
+    borderline west={.1em}{0pt}{thmC}, 
+}
+
+
+\theoremstyle{definition}
+
+\declaretheorem[style=problemstyle, numberwithin=section,
+name=Problem]{problemBase}
+\declaretheorem[style=problemstyle, sibling=problemBase,
+name=Problem]{problemBase*}
+
+\tcolorboxenvironment{problemBase*}{ probColors, probSpacing, colback=thmBgC }
+\tcolorboxenvironment{problemBase}{ probColors, probSpacing, }
+
+\declaretheorem[style=problemstyle, numberwithin=problemBase, name=Generalization]{generalization}
+
+
+\declaretheorem[style=examplestyle, sibling=theoremBase,
+name=Example]{exampleBase}
+\declaretheorem[style=examplestyle, sibling=theoremBase,
+name=Example]{exampleBase*}
+
+\tcolorboxenvironment{exampleBase}{ exampleBase=white }
+\tcolorboxenvironment{exampleBase*}{ exampleBase=thmBgC, exampleBorder }
+
+
+\declaretheorem[style=definitionstyle, sibling=theoremBase,
+name=Definition]{definitionBase}
+\declaretheorem[style=definitionstyle, sibling=theoremBase,
+name=Definition]{definitionBase*}
+
+\tcolorboxenvironment{definitionBase}{ defColors, defSpacing=1 }
+\tcolorboxenvironment{definitionBase*}{ defFancyColors, defFancySpacing=1 }
+
+\declaretheorem[style=claimstyle, numberwithin=theoremBase, name=Claim]{claim}
+\declaretheorem[style=claimstyle, numbered=no, name=Claim]{claim*}
+
+\newcommand{\impeq}[1]{
+    \tcboxmath[
+    colback=thmBgC, colframe=thmBgC, 
+    left=0pt, right=0pt, top=0pt, bottom=0pt
+    ]{#1}
+}

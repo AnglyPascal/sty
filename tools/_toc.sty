@@ -1,0 +1,53 @@
+\ProvidesPackage{_toc}
+
+\newif\if@toc@is \@toc@istrue
+\DeclareOption{en}{}
+
+\newif\if@toc@article@is \@toc@article@isfalse
+\DeclareOption{article}{\@toc@article@istrue}
+
+\newif\if@toc@memoir@is \@toc@memoir@isfalse
+\DeclareOption{memoir}{\@toc@memoir@istrue}
+
+% for now turn toc off for beamer
+\DeclareOption{beamer}{\@toc@isfalse}
+
+\ProcessOptions\relax
+
+
+% table of content specs
+\if@toc@is
+    \usepackage[usehighlevels]{alnumsec}
+
+    \if@toc@memoir@is
+        \usepackage{tocloft}
+        \setcounter{tocdepth}{4}
+        \setcounter{secnumdepth}{4}
+        \alnumsectionlevels{1}{
+            chapter, 
+            section, 
+            subsection, 
+            subsubsection, 
+            paragraph
+        }
+    \fi
+
+    \if@toc@article@is
+        \usepackage[subfigure]{tocloft}
+        \setcounter{tocdepth}{3}
+        \setcounter{secnumdepth}{3}
+        \alnumsectionlevels{1}{
+            section, 
+            subsection, 
+            subsubsection, 
+            paragraph
+        }
+        \renewcommand\cftsecafterpnum{\vskip8pt}
+        \renewcommand\cftsubsecafterpnum{\vskip0pt}
+    \fi
+
+    \alnumsecstyle{aaaa}
+    \surroundarabic[{.}][]{}{}
+    \otherseparators{1}
+    \alnumsecstyle{aaaa}
+\fi

@@ -1,0 +1,23 @@
+\ProvidesPackage{_ref}
+
+\newif\if@ref@bib@is \@ref@bib@isfalse
+\DeclareOption{bib}{\@ref@bib@istrue}
+
+\ProcessOptions\relax
+
+
+\usepackage{hyperref}
+
+\hypersetup{
+    colorlinks=true,
+    linkcolor=linkC,
+    filecolor=fileC,      
+    urlcolor=urlC,
+    citecolor = defC,
+}
+
+\if@ref@bib@is
+    \usepackage{biblatex}
+    \addbibresource{refs.bib}
+\fi
+

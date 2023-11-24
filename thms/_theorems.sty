@@ -1,0 +1,29 @@
+\ProvidesPackage{_theorems}
+
+
+\newif\if@theorems@none@is \@theorems@none@isfalse
+\newif\if@theorems@memoir@is  \@theorems@memoir@isfalse
+
+\DeclareOption{none} {\@theorems@none@istrue}
+% \DeclareOption{memoir}  {\@theorems@memoir@istrue}
+
+\def\theorems@soln@style{}
+\DeclareOption{minimal} {\renewcommand\theorems@soln@style{minimal}}
+\DeclareOption{fancy}   {\renewcommand\theorems@soln@style{fancy}}
+
+\ProcessOptions\relax
+
+
+\RequirePackage{_spaces}
+\RequirePackage{_thm_styles}
+\RequirePackage{_tcb_styles}
+
+\if@theorems@none@is
+    \RequirePackage{_thm_none}
+\else
+    \RequirePackage{_thm_base}
+    \RequirePackage{_thm_w_index}
+\fi
+
+\RequirePackage[\theorems@soln@style]{_thm_solns}
+

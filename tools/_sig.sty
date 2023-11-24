@@ -1,0 +1,24 @@
+\ProvidesPackage{_sig}
+
+\ProcessOptions\relax
+
+
+\author{M Ahsan Al Mahir} 
+
+\date{\today} 
+
+\DeclareRobustCommand{\signature}{A%
+    \kern-.09em {\setbox0\hbox{T}%
+        \vbox to\ht0{\hbox{%
+            \csname S@\f@size\endcsname\fontsize\sf@size\z@%
+            \math@fontsfalse\selectfont {H\hspace{.55mm}}%
+        }%
+        \vss}%
+    }\kern-.40em \hbox{S\kern-.1667em\lower.5ex\hbox{A\hspace{-.5mm}}%
+    \kern-.125ex{N}}
+}
+
+\newcommand{\ox}[1]{
+    \author{\textbf{M Ahsan Al Mahir}\\
+    Email: ahsan.almahir@sjc.ox.ac.uk}
+}

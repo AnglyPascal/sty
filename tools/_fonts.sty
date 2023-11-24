@@ -1,0 +1,52 @@
+\ProvidesPackage{_fonts}
+
+\newif\if@fonts@sans@is
+\newif\if@fonts@serif@is
+\newif\if@fonts@mono@is
+
+\DeclareOption{sans}{\@fonts@sans@istrue}
+\DeclareOption{serif}{\@fonts@serif@istrue}
+\DeclareOption{mono}{\@fonts@mono@istrue}
+
+\newif\if@fonts@beamer@is
+\DeclareOption{article}{\@fonts@beamer@isfalse}
+\DeclareOption{beamer}{\@fonts@beamer@istrue}
+
+\newif\if@fonts@is
+\DeclareOption{yes}{\@fonts@istrue}
+\DeclareOption{no}{\@fonts@isfalse}
+
+\ProcessOptions\relax
+
+\usepackage{fontspec}
+\usepackage[OT1]{fontenc}
+
+\if@fonts@is
+    \newfontfamily\Share[
+        Ligatures=TeX, 
+        Scale=MatchUppercase, 
+        WordSpace=.9
+    ]{Share}
+
+    \newfontfamily\Titillium[
+        Ligatures=TeX, 
+        Scale=.9
+    ]{Titillium Web}
+
+    \usepackage{mathptmx} 
+    \DeclareMathAlphabet{\mathcal}{OMS}{cmsy}{m}{n}
+
+    \if@fonts@beamer@is
+        \setmainfont{Andika New Basic}
+        \setsansfont{Yanone Kaffeesatz}
+    \else
+        \usepackage{kpfonts}
+    \fi
+
+    % \setmonofont{Share Tech Mono} [Scale=MatchUppercase, Scale=.9]
+    \setmonofont{Courier Prime} [Scale=MatchUppercase, Scale=.9]
+\fi
+
+\if@fonts@sans@is  \renewcommand{\familydefault}{\sfdefault} \fi
+\if@fonts@serif@is \renewcommand{\familydefault}{\rmdefault} \fi
+\if@fonts@mono@is  \renewcommand{\familydefault}{\ttdefault} \fi

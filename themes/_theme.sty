@@ -1,0 +1,167 @@
+\ProvidesPackage{_theme}
+
+
+\newif\if@theme@mono@is\@theme@mono@isfalse
+\newif\if@theme@blue@is\@theme@blue@isfalse
+\newif\if@theme@green@is \@theme@green@isfalse
+
+\DeclareOption{mono}  {\@theme@mono@istrue}
+\DeclareOption{blue}  {\@theme@blue@istrue}
+\DeclareOption{green} {\@theme@green@istrue}
+
+\ProcessOptions\relax
+
+
+\usepackage{xcolor}
+
+% Polar Night
+\definecolor{NordDarkBlack}   {HTML} {2E3440} % nord0
+\definecolor{NordBlack}       {HTML} {3B4252} % nord1
+\definecolor{NordMediumBlack} {HTML} {434C5e} % nord2
+\definecolor{NordBrightBlack} {HTML} {4C566A} % nord3
+% Snow Storm
+\definecolor{NordWhite}       {HTML} {E5E9F0} % nord5
+\definecolor{NordBrightWhite} {HTML} {ECEFF4} % nord6
+% Frost
+\definecolor{NordCyan}        {HTML} {8FBCBB} % nord7
+\definecolor{NordBrightCyan}  {HTML} {88C0D0} % nord8
+\definecolor{NordBlue}        {HTML} {81A1C1} % nord9
+\definecolor{NordBrightBlue}  {HTML} {5E81AC} % nord10
+% Aurora
+\definecolor{NordRed}         {HTML} {BF616A} % nord11
+\definecolor{NordOrange}      {HTML} {D08770} % nord12
+\definecolor{NordYellow}      {HTML} {EBCB8B} % nord13
+\definecolor{NordGreen}       {HTML} {A3BE8C} % nord14
+\definecolor{NordMagenta}     {HTML} {B48EAD} % nord15
+\definecolor{NordViolet}      {HTML} {786FA0}
+
+\definecolor{BestBlack}       {HTML} {17171c}
+\definecolor{GunaBlack}       {HTML} {161c23}
+\definecolor{BestBlackBright} {HTML} {22222a}
+
+% Cream Color 
+\definecolor{Rosewater}  {HTML} {d8a7b1}
+\definecolor{Spearmint}  {HTML} {b6e2d3}
+\definecolor{Cream}      {HTML} {fae8e0}
+\definecolor{HotPink}    {HTML} {ef7c8e}
+\definecolor{RoseQuartz} {HTML} {fadcd9}
+\definecolor{DustyRose}  {HTML} {f8afa6}
+\definecolor{Coral}      {HTML} {f79489}
+\definecolor{Cinnabar}   {HTML} {e43d40}
+\definecolor{BetterRed}  {HTML} {f85c70}
+
+% Water Foam
+\definecolor{Teal}       {HTML} {29a0b1}
+\definecolor{TealGreen}  {HTML} {167d7f}
+\definecolor{Spearmint}  {HTML} {98d7c2}
+\definecolor{Mint}       {HTML} {ddffe7}
+\definecolor{hgc}        {HTML} {00a6e7}
+\definecolor{icmcb_Blue} {HTML} {148d75}
+
+% Summer Splash
+\definecolor{BabyBlue}   {HTML} {d4f1f4}
+\definecolor{BlueGreen}  {HTML} {75e6da}
+\definecolor{BlueGrotto} {HTML} {189ab4}
+\definecolor{NavyBlue}   {HTML} {05445e}
+\definecolor{Cornflower} {HTML} {4c5270}
+
+% 50 shades of grey
+\definecolor{Black}         {HTML} {000000}
+\definecolor{Black2}        {HTML} {1a1a1a}
+\definecolor{Black3}        {HTML} {262626}
+\definecolor{Black4}        {HTML} {404040}
+\definecolor{DarkSlateGray} {HTML} {2F4F4F}
+\definecolor{SlateGray}     {HTML} {708090}
+\definecolor{DimGray}       {HTML} {696969}
+\definecolor{DarkGray}      {HTML} {A9A9A9}
+\definecolor{LightGray}     {HTML} {bfbfbf}
+
+% Greens
+\definecolor{RealGreen}    {HTML} {547237}
+\definecolor{RealGreenBG}  {HTML} {f7f7ef}
+\definecolor{RealGreenLite}{HTML} {4d9109}
+\definecolor{Yellow Green} {HTML} {ecf87f}
+\definecolor{Lime Green}   {HTML} {81b622}
+\definecolor{Olive Green}  {HTML} {3d550c}
+\definecolor{Forest Green} {HTML} {1a4314}
+\definecolor{Forest Green BG} {HTML} {edf2e8}
+
+
+\if@theme@mono@is
+    \colorlet{pageC}{white}
+    \colorlet{fgC}{black}
+
+    \colorlet{thmC}{black}
+    \colorlet{probC}{Black3}
+    \colorlet{defC}{Black2}
+    \colorlet{solC}{fgC}
+    \colorlet{titleC}{Black}
+
+    \colorlet{thmBgC}{LightGray!20!white}
+    \colorlet{probBgC}{pageC}
+    \colorlet{defBgC}{LightGray!20!white}
+
+    \colorlet{urlC}{black}
+    \colorlet{linkC}{black}
+    \colorlet{fileC}{black}
+    \colorlet{impC}{black}
+    \colorlet{impBgC}{thmBgC!95!black}
+
+    \pagecolor{pageC} \color{fgC}
+\fi
+
+\if@theme@green@is
+    \colorlet{pageC}{white!90!Yellow Green}
+    \colorlet{fgC}{black}
+
+    \colorlet{thmC}{Forest Green}
+    \colorlet{probC}{Olive Green}
+    \colorlet{defC}{RealGreen}
+    \colorlet{solC}{fgC}
+    \colorlet{titleC}{thmC}
+
+    \colorlet{thmBgC}{RealGreenLite!10!white}
+    \colorlet{probBgC}{pageC}
+    \colorlet{defBgC}{RealGreen!7!pageC}
+
+    \colorlet{urlC}{Lime Green}
+    \colorlet{linkC}{Lime Green}
+    \colorlet{fileC}{Lime Green}
+    \colorlet{impC}{NordRed}
+    \colorlet{impBgC}{thmBgC}
+
+    \pagecolor{pageC} \color{fgC}
+\fi
+
+\if@theme@blue@is
+    \colorlet{pageC}{BestBlack}
+    \colorlet{fgC}{NordWhite}
+
+    \colorlet{thmC}{BabyBlue}
+    \colorlet{probC}{Teal}
+    \colorlet{defC}{BlueGreen}
+    \colorlet{solC}{fgC}
+    \colorlet{titleC}{thmC}
+
+    \colorlet{thmBgC}{BestBlackBright}
+    \colorlet{probBgC}{white}
+    \colorlet{defBgC}{BestBlackBright}
+
+    \colorlet{urlC}{NordBrightCyan}
+    \colorlet{linkC}{NordBrightCyan}
+    \colorlet{fileC}{NordBrightCyan}
+    \colorlet{impC}{NordCyan!95!NordWhite}
+    \colorlet{impBgC}{thmBgC}
+
+    \pagecolor{pageC} \color{fgC}
+\fi
+
+
+%%% color macros
+\newcommand{\pb}[1]{{\leavevmode\color{Blue}{#1}}}
+\newcommand{\tc}[1]{{\leavevmode\color{Sepia}{#1}}}
+\newcommand{\tr}[1]{{\leavevmode\color{BlueGreen}{#1}}}
+\newcommand{\imp}[1]{{\textcolor{impBgC}{#1}}}
+\newcommand{\todo}[1]{{\textcolor{NordRed}{#1}}}
+\newcommand{\dec}[1]{{\leavevmode\color{Plum}{#1}}}
+\newcommand{\tg}[1]{{\leavevmode\color{NordCyan}{#1}}}

@@ -1,0 +1,163 @@
+\ProvidesPackage{_thm_w_index}
+
+\ProcessOptions\relax
+
+\ifcsname myindex\endcsname%
+\else%
+    \newcommand{\myindex}[2][]{}
+\fi%
+
+
+\usepackage{ifthen, xifthen}
+
+\newenvironment{theorem}[1][]{
+    \ifthenelse{\isempty{#1}}{% 
+        \begin{theoremBase}
+    }{% 
+        \begin{theoremBase}[#1]\myindex[thm]{#1}
+    }%
+}{%
+    \end{theoremBase}
+}
+
+\newenvironment{theorem*}[1][]{
+    \ifthenelse{\isempty{#1}}{% 
+        \begin{theoremBase*}
+    }{% 
+        \begin{theoremBase*}[#1]\myindex[thm]{#1}
+    }%
+}{%
+    \end{theoremBase*}
+}
+
+\newenvironment{Theorem}[1][]{
+    \ifthenelse{\isempty{#1}}{% 
+        \begin{TheoremBase}
+    }{% 
+        \begin{TheoremBase}[#1]\myindex[thm]{#1}
+    }%
+}{%
+    \end{TheoremBase}
+}
+
+\newenvironment{proposition}[1][]{
+    \ifthenelse{\isempty{#1}}{% 
+        \begin{propositionBase}
+    }{% 
+        \begin{propositionBase}[#1]\myindex[thm]{#1}
+    }%
+}{%
+    \end{propositionBase}
+}
+
+\newenvironment{proposition*}[1][]{
+    \ifthenelse{\isempty{#1}}{% 
+        \begin{propositionBase*}
+    }{% 
+        \begin{propositionBase*}[#1]\myindex[thm]{#1}
+    }%
+}{%
+    \end{propositionBase*}
+}
+
+\newenvironment{lemma}[1][]{
+    \ifthenelse{\isempty{#1}}{% 
+        \begin{lemmaBase}\myindex[thm]{Unnamed}
+    }{% 
+        \begin{lemmaBase}[#1]\myindex[thm]{#1}
+    }%
+}{%
+    \end{lemmaBase}
+}
+
+\newenvironment{lemma*}[1][]{
+    \ifthenelse{\isempty{#1}}{% 
+        \begin{lemmaBase*}\myindex[thm]{Unnamed}
+    }{% 
+        \begin{lemmaBase*}[#1]\myindex[thm]{#1}
+    }%
+}{%
+    \end{lemmaBase*}
+}
+
+\newenvironment{corollary}[1][]{
+    \ifthenelse{\isempty{#1}}{% 
+        \begin{corollaryBase}\myindex[thm]{Unnamed}
+    }{% 
+        \begin{corollaryBase}[#1]\myindex[thm]{#1}
+    }%
+}{%
+    \end{corollaryBase}
+}
+
+\newenvironment{corollary*}[1][]{
+    \ifthenelse{\isempty{#1}}{% 
+        \begin{corollaryBase*}\myindex[thm]{Unnamed}
+    }{% 
+        \begin{corollaryBase*}[#1]\myindex[thm]{#1}
+    }%
+}{%
+    \end{corollaryBase*}
+}
+
+
+\newenvironment{definition}[1][]{
+    \ifthenelse{\isempty{#1}}{% 
+        \begin{definitionBase}
+    }{% 
+        \begin{definitionBase}[#1]\myindex[def]{#1}
+    }%
+}{
+    \end{definitionBase}
+}
+
+\newenvironment{definition*}[1][]{
+    \ifthenelse{\isempty{#1}}{% 
+        \begin{definitionBase*}
+    }{% 
+        \begin{definitionBase*}[#1]\myindex[def]{#1}
+    }%
+}{
+    \end{definitionBase*}
+}
+
+
+\newenvironment{problem}[1][]{
+    \ifthenelse{\isempty{#1}}{% 
+        \begin{problemBase}
+    }{% 
+        \begin{problemBase}[#1]\myindex[prob]{#1}
+    }%
+}{%
+    \end{problemBase}
+}
+
+\newenvironment{problem*}[1][]{
+    \ifthenelse{\isempty{#1}}{% 
+        \begin{problemBase*}
+    }{% 
+        \begin{problemBase*}[#1]\myindex[prob]{#1}
+    }%
+}{%
+    \end{problemBase*}
+}
+
+\newenvironment{example}[1][]{
+    \ifthenelse{\isempty{#1}}{% 
+        \begin{exampleBase}
+    }{% 
+        \begin{exampleBase}[#1]\myindex[prob]{#1}
+    }%
+}{%
+    \end{exampleBase}
+}
+
+\newenvironment{example*}[1][]{
+    \ifthenelse{\isempty{#1}}{% 
+        \begin{exampleBase*}
+    }{% 
+        \begin{exampleBase*}[#1]\myindex[prob]{#1}
+    }%
+}{%
+    \end{exampleBase*}
+}

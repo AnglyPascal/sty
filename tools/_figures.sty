@@ -1,0 +1,29 @@
+\ProvidesPackage{_figures}
+
+\newif\if@figs@full@is   \@figs@full@isfalse
+\DeclareOption{full}   {\@figs@full@istrue}
+\DeclareOption{draft}   {\PassOptionsToPackage{draft}{graphicx}}
+
+\ProcessOptions\relax
+
+
+\usepackage{graphicx} 
+
+\if@figs@full@is
+    \usepackage{import}
+    \usepackage{pdfpages}
+
+    \usepackage{float}
+    \usepackage{subfig}
+
+    \usepackage{tikz}
+
+    \newcommand{\incfig}[2][1]{%
+        \fontsize{8}{9}\selectfont
+        \def\svgwidth{#1\columnwidth}
+        \import{./figs/}{#2.pdf_tex}
+        \fontsize{8}{11}\selectfont
+    }
+\fi
+
+\graphicspath{ {./images/}{./pages/} }

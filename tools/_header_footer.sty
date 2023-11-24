@@ -1,0 +1,35 @@
+\ProvidesPackage{_header_footer}
+
+\newif\if@hdr@none@is   \@hdr@none@isfalse
+\DeclareOption{none}   {\@hdr@none@istrue}
+
+\newif\if@hdr@fancy@is   \@hdr@fancy@isfalse
+\DeclareOption{fancy}   {\@hdr@fancy@istrue}
+
+\ProcessOptions\relax
+
+
+\if@hdr@fancy@is
+    \usepackage{fancyhdr, setspace}
+
+    % \makepagestyle{plain}
+    % % \makeevenhead{plain}{\rightmark\leftmark}{}{}
+    % \makeoddhead{plain}
+    % {\fontsize{10}{12} \selectfont \thepage}
+    % {}
+    % {\fontsize{10}{12} \selectfont \leftmark}
+
+    % \makeevenhead{plain}
+    % {\fontsize{10}{12} \selectfont \rightmark}
+    % {}
+    % {\fontsize{10}{12} \selectfont \thepage}
+
+    % \renewcommand*{\sectionmark}[1]{\markboth{#1}{}}
+    % \renewcommand*{\subsectionmark}[1]{\markright{#1}}
+    % \pagestyle{plain}
+\fi
+
+
+%%% Footnote specs
+\usepackage[hang,flushmargin]{footmisc}
+\setlength{\footnotesep}{.8\baselineskip}

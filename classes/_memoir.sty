@@ -1,0 +1,48 @@
+\ProvidesPackage{_article}
+
+\ProcessOptions\relax
+
+\usepackage{titlesec}
+
+
+\titleformat{\chapter}[frame]
+    {\normalfont}
+    {\filright\small\enspace CHAPTER\enspace
+        \bfseries \LARGE\thechapter\enspace}
+    {10pt}
+    {\Huge\bfseries\filcenter}[\thispagestyle{empty}\newpage]
+
+
+\titleformat{\section}
+    {\color{titleC}\normalfont\Large\bfseries}
+    {\S \thesection}
+    {1em}
+    {}
+
+\titleformat{\subsection}
+    {\color{titleC}\normalfont\large\bfseries}
+    {\thesubsection}
+    {1em}
+    {}
+
+\titlespacing*{\chapter}{0pt}{2em plus 1em minus .2em}{10em plus 2em}
+\titlespacing*{\section}{0pt}{2em plus 1em minus .2em}{2em plus .2em}
+\titlespacing*{\subsection}{0pt}{1em plus .5em minus .2em}{1em plus .2em}
+
+\setlrmarginsandblock{5em}{5em}{*}
+\setulmarginsandblock{8em}{5em}{*}
+\checkandfixthelayout
+
+
+\newcommand{\titlePage}{\maketitle\vfill \thispagestyle{empty}\newpage}
+\newcommand{\toc}{
+    \begingroup
+        {
+            \hypersetup{hidelinks}
+            \tableofcontents
+        }
+        \thispagestyle{empty}
+    \endgroup 
+    \setcounter{page}{0}
+}    
+
