@@ -16,8 +16,18 @@
     citecolor = defC,
 }
 
+\renewcommand{\sectionautorefname}{Section}
+\renewcommand{\subsectionautorefname}{Section}
+\renewcommand{\subsubsectionautorefname}{Section}
+
+\numberwithin{equation}{section}
+
 \if@ref@bib@is
-    \usepackage{biblatex}
+    \usepackage[
+        style=apa,
+        bibstyle=authoryear, 
+        backend=biber
+    ]{biblatex}
     \addbibresource{refs.bib}
 \fi
 

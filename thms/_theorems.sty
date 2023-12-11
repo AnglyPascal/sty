@@ -7,10 +7,6 @@
 \DeclareOption{none} {\@theorems@none@istrue}
 % \DeclareOption{memoir}  {\@theorems@memoir@istrue}
 
-\def\theorems@soln@style{}
-\DeclareOption{minimal} {\renewcommand\theorems@soln@style{minimal}}
-\DeclareOption{fancy}   {\renewcommand\theorems@soln@style{fancy}}
-
 \ProcessOptions\relax
 
 
@@ -25,5 +21,5 @@
     \RequirePackage{_thm_w_index}
 \fi
 
-\RequirePackage[\theorems@soln@style]{_thm_solns}
+\RequirePackage{_thm_solns}
 

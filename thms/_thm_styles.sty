@@ -7,11 +7,13 @@
 \RequirePackage{thmtools}
 \RequirePackage{chngcntr}
 
+\def\notestyle{\mdseries\normalfont}
+
 
 \declaretheoremstyle[
     headfont=\bfseries\color{probC},
     headpunct={.},
-    postheadspace={7pt},
+    postheadspace={5pt},
     spaceabove=\envskip,
     spacebelow=.5\envskip,
     notebraces={(}{)},
@@ -19,13 +21,13 @@
 ]{problemstyle}
 
 \declaretheoremstyle[
-    headfont=\itshape\color{thmC},
+    headfont=\bfseries\itshape\color{thmC},
     headpunct={ \color{thmC}--- },
     postheadspace={0pt},
     spaceabove=.7\envskip,
     spacebelow=0,
     notebraces={(}{)},
-    notefont=\color{thmC}\mdseries\normalfont,
+    notefont=\color{thmC}\notestyle,
 ]{claimstyle}
 
 \declaretheoremstyle[
@@ -35,7 +37,7 @@
     spaceabove=.7\envskip,
     spacebelow=.5\envskip,
     notebraces={(}{)},
-    notefont=\color{thmC}\mdseries\normalfont,
+    notefont=\color{thmC}\notestyle,
 ]{thmstyle}
 
 \declaretheoremstyle[
@@ -44,7 +46,7 @@
     postheadspace={5pt},
     notebraces={}{},
     headpunct={},
-    notefont=\bfseries\color{thmC},
+    notefont=\color{thmC}\notestyle,
 ]{emptythmstyle}
 
 \declaretheoremstyle[
@@ -53,6 +55,7 @@
     spaceabove=.7\envskip,
     % spacebelow=0pt,
     headpunct={ --- },
+    notefont=\color{thmC}\notestyle,
 ]{definitionstyle}
 
 \declaretheoremstyle[
@@ -89,7 +92,8 @@
 
 \declaretheoremstyle[
     headfont=\bfseries,
-    spaceabove=1\envskip,
-    spacebelow=1\envskip,
+    spaceabove=.8\envskip,
+    spacebelow=.8\envskip,
     headpunct={. },
+    notefont=\color{thmC}\notestyle,
 ]{examplestyle}

@@ -161,3 +161,23 @@
 }{%
     \end{exampleBase*}
 }
+
+\newenvironment{exercise}[1][]{
+    \ifthenelse{\isempty{#1}}{% 
+        \begin{exerciseBase}
+    }{% 
+        \begin{exerciseBase}[#1]\myindex[prob]{#1}
+    }%
+}{%
+    \end{exerciseBase}
+}
+
+\newenvironment{exercise*}[1][]{
+    \ifthenelse{\isempty{#1}}{% 
+        \begin{exerciseBase*}
+    }{% 
+        \begin{exerciseBase*}[#1]\myindex[prob]{#1}
+    }%
+}{%
+    \end{exerciseBase*}
+}

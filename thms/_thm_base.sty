@@ -55,7 +55,8 @@ sibling=theoremBase]{corollaryBase*}
 
 \theoremstyle{definition}
 
-\declaretheorem[style=problemstyle, numberwithin=section,
+% \renewcommand{\theproblemBase}{\thesubsection.\theproblemBase}
+\declaretheorem[style=problemstyle, numberwithin=subsection,
 name=Problem]{problemBase}
 \declaretheorem[style=problemstyle, sibling=problemBase,
 name=Problem]{problemBase*}
@@ -70,6 +71,10 @@ name=Problem]{problemBase*}
 name=Example]{exampleBase}
 \declaretheorem[style=examplestyle, sibling=theoremBase,
 name=Example]{exampleBase*}
+\declaretheorem[style=examplestyle, sibling=theoremBase,
+name=Exercise]{exerciseBase}
+\declaretheorem[style=examplestyle, sibling=theoremBase,
+name=Exercise]{exerciseBase*}
 
 \tcolorboxenvironment{exampleBase}{ exampleBase=white }
 \tcolorboxenvironment{exampleBase*}{ exampleBase=thmBgC, exampleBorder }
@@ -86,9 +91,16 @@ name=Definition]{definitionBase*}
 \declaretheorem[style=claimstyle, numberwithin=theoremBase, name=Claim]{claim}
 \declaretheorem[style=claimstyle, numbered=no, name=Claim]{claim*}
 
+% \declaretheorem[style=remarkstyle, numbered=no]{note}
+\declaretheorem[style=remarkstyle, sibling=theoremBase, name=Remark]{remark}
+\declaretheorem[style=remarkstyle, numbered=no, name=Remark]{remark*}
+
+
 \newcommand{\impeq}[1]{
     \tcboxmath[
     colback=thmBgC, colframe=thmBgC, 
     left=0pt, right=0pt, top=0pt, bottom=0pt
     ]{#1}
 }
+
+\newcommand{\indef}[1]{\textbf{#1}}

@@ -1,74 +1,62 @@
 \ProvidesPackage{_thm_solns}
 
-\newif\if@solns@fancy@is 
-\DeclareOption{minimal}{\@solns@fancy@isfalse}
-\DeclareOption{fancy}{\@solns@fancy@istrue}
-
 \ProcessOptions\relax
 
-\theoremstyle{remark}
+\theoremstyle{solutionstyle}
 
-\if@solns@fancy@is
+\declaretheorem[numbered=no, qed=\qedsymbol]{solution}
+\declaretheorem[numbered=no, name=Solution]{solution*}
 
-    \declaretheorem[style=solutionstyle, numbered=no]{solution}
-    \declaretheorem[style=solutionstyle, numbered=no, name=Solution]{solution*}
-    \declaretheorem[style=solutionstyle, numbered=no, name=partial solution]{partsoln}
-    \declaretheorem[style=solutionstyle, numbered=no, name=proof]{prooof}
-
-
-    \tcolorboxenvironment{solution}{ 
-        solnColors=solC, solnSpacing=.7 
-    }
-    \newtcolorbox{idea}{ 
-        solnColors=solC!90!pageC, solnSpacing=.7, top=0pt, 
-    }
-    \tcolorboxenvironment{prooof}{ 
-        solnColors=solC!90!pageC, solnSpacing=.7 
-    }
-
-    \declaretheorem[style=solnDefStyle, numbered=no, name=Definition]{soldef}
-    \declaretheorem[style=solnDefStyle, numbered=no, name=Lemma]{sollem}
+\tcolorboxenvironment{solution}{ solnSpacing=.8, }
+\tcolorboxenvironment{solution*}{ solnColors=solC, solnSpacing=.8, solnBorders  }
 
 
-    \tcolorboxenvironment{sollem}{
-        coltext=solC, blanker, breakable, left=1em,
-        before skip=20pt, after skip=20pt,
-        borderline west={.2em}{1pt}{thmC!80},
-    }
-    \tcolorboxenvironment{soldef}{
-        coltext=solC, blanker, breakable, left=1em,
-        before skip=20pt, after skip=20pt,
-        borderline west={.1em}{0pt}{black!80},
-    }
+\declaretheorem[numbered=no, name=Partial Solution]{partsoln}
 
-    \declaretheorem[style=hintstyle, numbered=no, name=]{hint}
-    \declaretheorem[style=remarkstyle, numbered=no]{note}
+\newtcolorbox{idea}{ solnColors=solC!90!pageC, solnSpacing=.7, solnBorders }
 
-    \let\origquote=\quote
-    \def\quote{\origquote\itshape}
 
-    \tcolorboxenvironment{problem}{ probColors, probSpacing, }
+\declaretheorem[numbered=no, name=Proof, qed=\qedsymbol]{proofBase}
+\declaretheorem[numbered=no, name=Proof]{proof*}
 
-\else
+\tcolorboxenvironment{proofBase}{ solnSpacing=.8, }
+\tcolorboxenvironment{proof*}{ solnColors=solC!90!pageC, solnSpacing=.8, solnBorders }
 
-    \declaretheorem[style=solutionstyle, numbered=no, qed=\qedsymbol]{solution}
-    \declaretheorem[style=solutionstyle, numbered=no, qed=\qedsymbol, name=Proof]{prooof}
-    \declaretheorem[style=solnDefStyle, numbered=no, name=Definition]{soldef}
-    \declaretheorem[style=solnDefStyle, numbered=no, name=Lemma]{sollem}
+\renewenvironment{proof}[1][]{
+    \ifthenelse{\isempty{#1}}{% 
+        \begin{proofBase}
+    }{% 
+        \begin{proofBase}[#1]
+    }%
+}{%
+    \end{proofBase}
+}
 
-    \declaretheorem[style=remarkstyle, sibling=theoremBase, name=Remark]{remark}
-    % \newtheorem*{note}{Note}
-    \renewenvironment{proof}{{\textit{Proof}.}}{\qedsymbol}
-    \newtheorem*{abuse*}{Abuse of Notation}
+\newenvironment{Proof}{{\textit{Proof}.}}{\qedsymbol}
 
-    \tcolorboxenvironment{solution}{ 
-        blanker, top=0pt, bottom=0pt, breakable, 
-        before skip=.7\envskip, after skip=.8\envskip,
-        envParSpacing=.7,
-    }
-    \tcolorboxenvironment{prooof}{ 
-        blanker, top=0pt, bottom=0pt, breakable, 
-        before skip=.7\envskip, after skip=.8\envskip,
-        envParSpacing=.7,
-    }
-\fi
+
+\theoremstyle{solnDefStyle}
+
+\declaretheorem[numbered=no, name=Definition]{soldef}
+\declaretheorem[numbered=no, name=Lemma]{sollem}
+
+\tcolorboxenvironment{sollem*}{
+    coltext=solC, blanker, breakable, left=1em,
+    before skip=20pt, after skip=20pt,
+    borderline west={.2em}{1pt}{thmC!80},
+}
+\tcolorboxenvironment{soldef*}{
+    coltext=solC, blanker, breakable, left=1em,
+    before skip=20pt, after skip=20pt,
+    borderline west={.1em}{0pt}{black!80},
+}
+
+
+\declaretheorem[style=hintstyle, numbered=no, name=]{hint}
+
+
+\let\origquote=\quote
+\def\quote{\origquote\itshape}
+
+\newtheorem*{abuse*}{Abuse of Notation}
+

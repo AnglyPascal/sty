@@ -1,19 +1,23 @@
 \ProvidesPackage{_oxford}
 
+\newif\ifextraA\extraAfalse
+\newif\ifextraB\extraBfalse
+\newif\ifextraC\extraCfalse
+
 \ProcessOptions\relax
 
 
 \def\problemSection{
     \counterwithin{problemBase}{subsection}
-    \counterwithin{ProblemBase}{subsection}
-
-    \makeatletter
     \renewcommand{\theproblemBase}{\arabic{subsection}.\arabic{problemBase}}
-    \renewcommand{\theProblemBase}{\arabic{subsection}.\arabic{ProblemBase}}
 
-    \renewcommand{\thesubsection}{\arabic{subsection}.}
-    \titlecontents{subsection} [1.5em] {} {{\thecontentslabel} \hspace{.5em}} {} {\titlerule*[.5pc]{.}\contentspage}
-    \makeatother
+    % \renewcommand{\subsubsection}{Section \Alph{subsubsection}}
+
+    % \counterwithin{ProblemBase}{subsection}
+    % \renewcommand{\theProblemBase}{\arabic{subsection}.\arabic{ProblemBase}}
+
+    % \renewcommand{\thesubsection}{\arabic{subsection}.}
+    % \titlecontents{subsection} [1.5em] {} {{\thecontentslabel} \hspace{.5em}} {} {\titlerule*[.5pc]{.}\contentspage}
 }
 
 
