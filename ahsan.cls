@@ -105,6 +105,11 @@
 %%% Load theme
 \RequirePackage[\ahsan@theme]{_theme}
 
+%%% setup index
+\if@ahsan@index@is
+    \RequirePackage[\ahsan@class@name]{_index}
+\fi
+
 %%% Load theorems
 \RequirePackage[\ahsan@theorems]{_theorems}
 
@@ -122,11 +127,6 @@
 
 %%% add signature and author name
 \RequirePackage[]{_sig}
-
-%%% setup index
-\if@ahsan@index@is
-    \RequirePackage[\ahsan@class@name]{_index}
-\fi
 
 %%% Load code style
 \if@ahsan@code@is

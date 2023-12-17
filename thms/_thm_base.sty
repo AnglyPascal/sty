@@ -39,10 +39,9 @@ sibling=theoremBase]{corollaryBase*}
 \tcolorboxenvironment{TheoremBase}{ 
     theoremFancyColors,
     theoremOuterSpacing=1.1, 
-    theoremInnerSpacing,
     borderline={.05em}{0pt}{thmC}, 
-    top=.3\envskip,
-    bottom=.3\envskip 
+    top=.3\envskip, bottom=.3\envskip, left=.3\envskip, right=.3\envskip,
+    envParSpacing=.7,
 }
 
 \tcolorboxenvironment{emptythm}{ 
@@ -103,4 +102,3 @@ name=Definition]{definitionBase*}
     ]{#1}
 }
 
-\newcommand{\indef}[1]{\textbf{#1}}

@@ -7,30 +7,35 @@
 
 \ProcessOptions\relax
 
+\def\indexStyle{/home/ahsan/git/sty/tools/_index_style.ist}
 
 % index making
 \usepackage{imakeidx}
 
 \indexsetup{level=\section*, toclevel=section, headers={\indexname}{}}
 
-\makeindex[name=def,   title=Definitions, options= {-s _index_style.ist}]
-\makeindex[name=prob,  title=Problems,    options= {-s _index_style.ist}]
-\makeindex[name=thm,   title=Theorems,    options= {-s _index_style.ist}]
-\makeindex[name=strat, title=Strategies,  options= {-s _index_style.ist}]
-\makeindex[            title=Misc,        options= {-s _index_style.ist}]
-% \makeindex[name=cat, title=Categories, options= -s _index_style.ist]
+\renewcommand*\@idxitem{\par\hangindent 15\p@}
+\renewcommand*\subitem{\@idxitem \nobreak \hspace*{0\p@}}
+\renewcommand*\subsubitem{\@idxitem \nobreak \hspace*{15\p@}}
+
+\makeindex[name=def,   title=Definitions, options= {-s \indexStyle}]
+\makeindex[name=prob,  title=Problems,    options= {-s \indexStyle}]
+\makeindex[name=thm,   title=Theorems,    options= {-s \indexStyle}]
+\makeindex[name=strat, title=Strategies,  options= {-s \indexStyle}]
+\makeindex[            title=Misc,        options= {-s \indexStyle}]
+% \makeindex[name=cat, title=Categories, options= {-s \indexStyle}]
 
 \def\Chaptername{No Chpater}
 \def\Sectionname{No Section}
 \def\Subsectionname{No Subsection}
 \let\Chaptermark\chaptermark
-\def\chaptermark#1{\def\Chaptername{#1}\Chaptermark{#1}}
+\def\chaptermark#1{\def\Chaptername{\thechapter. #1}\Chaptermark{#1}}
 \let\Sectionmark\sectionmark
-\def\sectionmark#1{\def\Sectionname{#1}\Sectionmark{#1}}
+\def\sectionmark#1{\def\Sectionname{\thesection. #1}\Sectionmark{#1}}
 \let\Subsectionmark\subsectionmark
-\def\subsectionmark#1{\def\Subsectionname{#1}\Subsectionmark{#1}}
+\def\subsectionmark#1{\def\Subsectionname{\thesubsection. #1}\Subsectionmark{#1}}
 \let\Subsubsectionmark\subsubsectionmark
-\def\subsubsectionmark#1{\def\Subsubsectionname{#1}\Subsubsectionmark{#1}}
+\def\subsubsectionmark#1{\def\Subsubsectionname{\thesubsubsection. #1}\Subsubsectionmark{#1}}
 
 \if@index@article@is
     \newcommand\myindex[2][]{\index[#1]{\Sectionname!#2}}
@@ -39,7 +44,7 @@
 \fi
 
 \if@index@article@is
-    \renewcommand{\indef}[1]{\index[def]{\Sectionname!#1}\imp{#1}}
+    \newcommand{\indef}[1]{\index[def]{\Sectionname!\MakeUppercase #1}\textbf{#1}}
 \else
-    \renewcommand{\indef}[1]{\index[def]{\Chaptername!\Sectionname!#1}\imp{#1}}
+    \newcommand{\indef}[1]{\index[def]{\Chaptername!\Sectionname!\MakeUppercase #1}\textbf{#1}}
 \fi

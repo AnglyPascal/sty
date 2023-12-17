@@ -2,11 +2,16 @@
 
 \ProcessOptions\relax
 
+% FIXME: ugly hack
 \ifcsname myindex\endcsname%
 \else%
     \newcommand{\myindex}[2][]{}
 \fi%
 
+\ifcsname indef\endcsname%
+\else%
+    \newcommand{\indef}[1]{\textbf{#1}}
+\fi%
 
 \usepackage{ifthen, xifthen}
 
@@ -62,7 +67,7 @@
 
 \newenvironment{lemma}[1][]{
     \ifthenelse{\isempty{#1}}{% 
-        \begin{lemmaBase}\myindex[thm]{Unnamed}
+        \begin{lemmaBase}
     }{% 
         \begin{lemmaBase}[#1]\myindex[thm]{#1}
     }%
@@ -72,7 +77,7 @@
 
 \newenvironment{lemma*}[1][]{
     \ifthenelse{\isempty{#1}}{% 
-        \begin{lemmaBase*}\myindex[thm]{Unnamed}
+        \begin{lemmaBase*}
     }{% 
         \begin{lemmaBase*}[#1]\myindex[thm]{#1}
     }%
@@ -82,7 +87,7 @@
 
 \newenvironment{corollary}[1][]{
     \ifthenelse{\isempty{#1}}{% 
-        \begin{corollaryBase}\myindex[thm]{Unnamed}
+        \begin{corollaryBase}
     }{% 
         \begin{corollaryBase}[#1]\myindex[thm]{#1}
     }%
@@ -92,7 +97,7 @@
 
 \newenvironment{corollary*}[1][]{
     \ifthenelse{\isempty{#1}}{% 
-        \begin{corollaryBase*}\myindex[thm]{Unnamed}
+        \begin{corollaryBase*}
     }{% 
         \begin{corollaryBase*}[#1]\myindex[thm]{#1}
     }%
