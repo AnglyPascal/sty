@@ -7,20 +7,20 @@
 \declaretheorem[numbered=no, qed=\qedsymbol]{solution}
 \declaretheorem[numbered=no, name=Solution]{solution*}
 
-\tcolorboxenvironment{solution}{ solnSpacing=.8, }
-\tcolorboxenvironment{solution*}{ solnColors=solC, solnSpacing=.8, solnBorders  }
+\tcolorboxenvironment{solution}{ solnSpacing=1, }
+\tcolorboxenvironment{solution*}{ solnColors=solC, solnSpacing=1, solnBorders  }
 
 
 \declaretheorem[numbered=no, name=Partial Solution]{partsoln}
 
-\newtcolorbox{idea}{ solnColors=solC!90!pageC, solnSpacing=.7, solnBorders }
+\newtcolorbox{idea}{ solnColors=solC!90!pageC, solnSpacing=1, solnBorders }
 
 
 \declaretheorem[numbered=no, name=Proof, qed=\qedsymbol]{proofBase}
 \declaretheorem[numbered=no, name=Proof]{proof*}
 
-\tcolorboxenvironment{proofBase}{ solnSpacing=.8, }
-\tcolorboxenvironment{proof*}{ solnColors=solC!90!pageC, solnSpacing=.8, solnBorders }
+\tcolorboxenvironment{proofBase}{ solnSpacing=1, }
+\tcolorboxenvironment{proof*}{ solnColors=solC!90!pageC, solnSpacing=1, solnBorders }
 
 \renewenvironment{proof}[1][]{
     \ifthenelse{\isempty{#1}}{% 

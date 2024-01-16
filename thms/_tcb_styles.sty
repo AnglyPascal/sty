@@ -110,8 +110,8 @@
     },
     solnSpacing/.style={
         blanker, breakable, 
-        before skip=#1\envskip minus .1\envskip, 
-        after skip=#1\envskip plus .2\envskip,
+        before skip=\dimexpr#1\envskip-.2\envskip\relax,
+        after skip=\dimexpr#1\envskip+.6\envskip\relax,
         envParSpacing=.5,
     },
     solnBorders/.style={

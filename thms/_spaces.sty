@@ -5,7 +5,8 @@
 \usepackage[nodisplayskipstretch]{setspace}
 
 \newlength{\envskip}
-\setlength{\envskip}{\f@size pt}
+% \setlength{\envskip}{\baselineskip}
+\setlength{\envskip}{\dimexpr\f@size pt + 2pt\relax}
 % \addtolength{\envskip}{5pt}
 
 \newlength{\envLeftGap}

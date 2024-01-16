@@ -39,16 +39,13 @@ sibling=theoremBase]{corollaryBase*}
 \tcolorboxenvironment{TheoremBase}{ 
     theoremFancyColors,
     theoremOuterSpacing=1.1, 
-    borderline={.05em}{0pt}{thmC}, 
+    borderline={.07em}{0pt}{thmC}, 
     top=.3\envskip, bottom=.3\envskip, left=.3\envskip, right=.3\envskip,
     envParSpacing=.7,
 }
 
 \tcolorboxenvironment{emptythm}{ 
-    theoremFancyColors,
-    theoremOuterSpacing=1,     
-    theoremInnerSpacing,
-    borderline west={.1em}{0pt}{thmC}, 
+    thmFancyStyle=1.1
 }
 
 
@@ -77,6 +74,7 @@ name=Exercise]{exerciseBase*}
 
 \tcolorboxenvironment{exampleBase}{ exampleBase=white }
 \tcolorboxenvironment{exampleBase*}{ exampleBase=thmBgC, exampleBorder }
+\tcolorboxenvironment{exerciseBase}{ exampleBase=white }
 
 
 \declaretheorem[style=definitionstyle, sibling=theoremBase,

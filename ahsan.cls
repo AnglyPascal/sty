@@ -7,6 +7,8 @@
 \newif \if@ahsan@beamer@is
 \newif \if@ahsan@memoir@is
 
+\newif \if@ahsan@oxford@is \@ahsan@oxford@isfalse
+
 %%% Default is article
 \def\ahsan@class@name{article}
 \@ahsan@article@istrue
@@ -24,7 +26,7 @@
     \renewcommand\ahsan@class@name{memoir}
 }
 
-\DeclareVoidOption{oxford}{\RequirePackage{_oxford}}
+\DeclareVoidOption{oxford}{\@ahsan@oxford@istrue}
 
 \DeclareStringOption[169]{aspectratio}
 
@@ -34,7 +36,7 @@
 \DeclareVoidOption{sans}{\renewcommand\ahsan@font@shape{sans}}
 \DeclareVoidOption{mono}{\renewcommand\ahsan@font@shape{mono}}
 
-\def\ahsan@font@size{10pt}
+\def\ahsan@font@size{11pt}
 \DeclareVoidOption{10pt}{\renewcommand\ahsan@font@size{10pt}}
 \DeclareVoidOption{11pt}{\renewcommand\ahsan@font@size{11pt}}
 \DeclareVoidOption{12pt}{\renewcommand\ahsan@font@size{12pt}}
@@ -136,4 +138,8 @@
 \if@ahsan@beamer@is
 \else
     \RequirePackage[]{_enum}
+\fi
+
+\if@ahsan@oxford@is
+    \usepackage{_oxford}
 \fi
