@@ -7,6 +7,8 @@
 \newif \if@ahsan@beamer@is
 \newif \if@ahsan@memoir@is
 
+\newif \if@ahsan@oxford@is \@ahsan@oxford@isfalse
+
 %%% Default is article
 \def\ahsan@class@name{article}
 \@ahsan@article@istrue
@@ -23,6 +25,8 @@
     \@ahsan@memoir@istrue
     \renewcommand\ahsan@class@name{memoir}
 }
+
+\DeclareVoidOption{oxford}{\@ahsan@oxford@istrue}
 
 \DeclareStringOption[169]{aspectratio}
 
@@ -136,6 +140,12 @@
     \RequirePackage[]{_enum}
 \fi
 
+%%% Load oxford specific commands
+\if@ahsan@oxford@is
+    \usepackage{_oxford}
+\fi
+
+
 %%% suppress harmless warnings
 %
 % overfull 
@@ -151,3 +161,4 @@
 
 %%% package for any testing
 \usepackage{_tests}
+
