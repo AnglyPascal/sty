@@ -14,6 +14,9 @@
 \@ahsan@article@istrue
 
 \DeclareVoidOption{article}{}
+\DeclareVoidOption{report}{
+    \renewcommand\ahsan@class@name{report}
+}
 \DeclareVoidOption{beamer}{
     \@ahsan@article@isfalse
     \@ahsan@beamer@istrue
