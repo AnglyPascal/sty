@@ -52,6 +52,10 @@
 \@ahsan@index@isfalse
 \DeclareVoidOption{index}{\@ahsan@index@istrue}
 
+\DeclareVoidOption{glossary}{
+    \PassOptionsToPackage{glossary}{_index}
+}
+
 %%% Theme
 \DeclareStringOption[mono]{theme}
 

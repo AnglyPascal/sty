@@ -6,7 +6,23 @@
 \DeclareOption{memoir}{\@index@article@isfalse}
 \DeclareOption{beamer}{\@index@article@isfalse}
 
+\newif\if@index@glossary@is\@index@glossary@isfalse
+\DeclareOption{glossary}{\@index@glossary@istrue}
+
 \ProcessOptions\relax
+
+\if@index@glossary@is
+    % glossary making
+    \usepackage{glossaries}
+    \newglossary[slg]{symbolslist}{syi}{syg}{List of Symbols}
+    \makeglossaries
+    \newcommand{\glosdef}[3]{ 
+        \newglossaryentry{#1}{name=#2,description={#3},type=symbolslist}
+        \glsadd{#1}
+    }
+\else
+    \newcommand{\glosdef}[3]{}
+\fi
 
 \def\indexStyle{/home/ahsan/git/sty/tools/_index_style.ist}
 
@@ -55,3 +71,4 @@
 \else
     \newcommand{\inthm}[1]{\index[thm]{\Chaptername!\Sectionname!\MakeUppercase #1}\textbf{#1}}
 \fi
+
