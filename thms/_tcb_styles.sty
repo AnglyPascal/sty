@@ -5,118 +5,103 @@
 
 \RequirePackage[most]{tcolorbox}
 
+\newlength\myskip
+\AtBeginDocument{%
+  \setlength\myskip{\parskip}%
+}
 
 \tcbset{
     envParSpacing/.style={
         before upper={
-            \setlength{\abovedisplayskip}{5pt}
-            \setlength{\belowdisplayskip}{5pt}
-            \setlength{\belowdisplayshortskip}{6pt}
-            % TODO: for theorem spacing, add .2em extra
-            \parskip.5\baselineskip \advance\parskip%
-                0pt plus 2pt \vspace{-#1em}
-        }
+            \parskip#1\myskip \advance\parskip%
+                0pt plus 2pt \vspace{-#1\myskip}
+        },
+        before=\par\noindent, after=\par,
+        % before skip=\dimexpr#1\envskip-.2\envskip\relax,
     },
-}
-
-\tcbset{
-    theoremColors/.style={
-        blanker, breakable, 
-        colback=thmBgC, colframe=thmBgC, coltext=fgC,
+    colorsBlank/.style={
+        colback=pageC, colframe=thmBgC, coltext=fgC,
     },
-    theoremFancyColors/.style={
-        tile, breakable, sharp corners, 
+    colorsShaded/.style={
         coltext=fgC, colback=thmBgC,
     },
-    theoremOuterSpacing/.style={
-        before skip=#1\envskip, 
-        after skip=#1\envskip,
-    },
-    theoremBorders/.style={
-        borderline west={.1em}{0pt}{thmC},
-    },
-    theoremInnerSpacing/.style={
-        top=.2\envskip, bottom=.2\envskip, left=1.1\envLeftGap,
-        envParSpacing=.7,
-    },
-    thmStyle/.style={
-        theoremColors, 
-        theoremBorders,
-        theoremOuterSpacing=#1,
-        theoremInnerSpacing,
-    },
-    thmFancyStyle/.style={
-        theoremFancyColors, 
-        theoremBorders,
-        theoremOuterSpacing=#1,
-        theoremInnerSpacing,
-    }
-}
-
-\tcbset{
-    probColors/.style={
-        breakable, colback=pageC, colframe=probC, coltext=fgC,
-    },
-    probSpacing/.style={
-        before skip=.5\envskip, 
-        after skip=.7\envskip, 
-        arc=0pt, boxrule=.5pt,
-        top=.1em, bottom=.1em,
-        left=.3em, right=.3em,
-        envParSpacing=.5,
-    },
-    defColors/.style={
-        blanker, breakable, 
-        coltext=fgC, colback=defBgC, colframe=defBgC,
-    },
-    defSpacing/.style={
-        top=0pt, bottom=0pt, left=0pt, right=0pt,
-        before skip=.7\envskip plus .05\envskip,
-        after skip=.7\envskip plus .05\envskip,
-        envParSpacing=.5,
-    },
-    defFancyColors/.style={
-        tile, breakable, 
-        coltext=fgC, colback=defBgC, colframe=defBgC,
-    },
-    defFancySpacing/.style={
-        top=.2\envskip, bottom=.2\envskip, 
-        left=\envLeftGap, right=.3em,
-        borderline west={.1em}{0pt}{defC},
-        before skip=#1\envskip,
-        after skip=#1\envskip,
-        envParSpacing=.5,
-    },
-}
-
-\tcbset{
-    exampleBase/.style={
-        blanker,
+    blanked/.style={
+        blanker, 
         breakable,
-        probSpacing, 
-        colback={#1}, 
-        envParSpacing=.5,
-        bottom = 5pt, top = 3pt,
-        left=0pt, right=0pt,
-        before skip=1.2\envskip,
-        after skip=1.2\envskip,
     },
-    exampleBorder/.style={
-        borderline north={.05em}{0pt}{thmC},
-        borderline south={.05em}{0pt}{thmC},
+    tabbed/.style={
+        tile, 
+        breakable, 
+        borderline west={.08em}{0pt}{thmC},
+    },
+    boxed/.style={
+        tile,
+        % breakable,
+        borderline={.08em}{0pt}{thmC}, 
     }
 }
 
 \tcbset{
-    solnColors/.style={
-        coltext=#1, blanker, breakable, colback=pageC, 
+    styleBlank/.style={
+        blanked,
+        colorsBlank,
+        top=0pt, bottom=0pt, left=0pt, right=0pt,
+        envParSpacing=.8, 
     },
-    solnSpacing/.style={
-        top=2pt, bottom=2pt, left=1em, right=.7em,
-        before skip=#1\envskip, 
-        after skip=#1\envskip + .2\envskip,
-        borderline west={.05em}{0pt}{solC},
-        envParSpacing=.5,
+    styleShaded/.style={
+        blanked,
+        colorsShaded,
+        colorsBlank,
+        top=.2\envskip, bottom=.2\envskip, left=.2\envskip, right=.2\envskip,
+        envParSpacing=.8, 
     },
+    styleTabbed/.style={
+        colorsBlank,
+        tabbed=#1,
+        top=0pt, bottom=0pt, left=1.3\padding, right=0pt,
+        envParSpacing=.8, 
+    },
+    styleTabShaded/.style={
+        colorsShaded,
+        tabbed=#1,
+        top=\padding, bottom=\padding, left=1.3\padding, right=\padding,
+        envParSpacing=.8, 
+    },
+    styleBoxed/.style={
+        colorsShaded,
+        boxed,
+        top=1.3\padding, bottom=1.3\padding, left=1.3\padding, right=1.3\padding,
+        envParSpacing=.8, 
+    },
+}
+
+\tcbset{
+    thm/.style={ styleTabbed=#1, },
+    thmStar/.style={ styleTabShaded=#1, },
+    thmCap/.style={ styleBoxed, },
+}
+
+\tcbset{
+    def/.style={ styleBlank=#1, },
+    defStar/.style={ styleTabShaded=#1, },
+    defCap/.style={ styleTabShaded, },
+}
+
+\tcbset{
+    prob/.style={ styleBlank=#1, },
+    probStar/.style={ styleTabbed=#1, },
+    probCap/.style={ styleTabShaded, },
+}
+
+\tcbset{
+    example/.style={ styleBlank=#1, },
+    exampleStar/.style={ styleTabShaded=#1, },
+    exampleCap/.style={ styleTabShaded, },
+}
+
+\tcbset{
+    soln/.style={ styleBlank=#1, envParSpacing=1, },
+    solnStar/.style={ styleTabbed=#1, },
+    solnCap/.style={ styleTabShaded, },
 }
 

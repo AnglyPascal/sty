@@ -2,89 +2,117 @@
 
 \ProcessOptions\relax
 
+% FIXME: ugly hack
+\ifcsname myindex\endcsname%
+\else%
+    \newcommand{\myindex}[2][]{}
+\fi%
 
-\declaretheorem[style=thmstyle, name=Theorem,
-numberwithin=section]{theoremBase}
-\declaretheorem[style=thmstyle, name=Theorem, sibling=theoremBase]{theoremBase*}
-\declaretheorem[style=thmstyle, name=Theorem, sibling=theoremBase]{TheoremBase}
+\ifcsname indef\endcsname%
+\else%
+    \newcommand{\indef}[1]{\textbf{#1}}
+\fi%
 
-\declaretheorem[style=thmstyle, name=Lemma, sibling=theoremBase]{lemmaBase}
-\declaretheorem[style=thmstyle, name=Lemma, sibling=theoremBase]{lemmaBase*}
+\ifcsname inthm\endcsname%
+\else%
+    \newcommand{\inthm}[1]{\textbf{#1}}
+\fi%
 
-\declaretheorem[style=thmstyle, name=Proposition,
-sibling=theoremBase]{propositionBase}
-\declaretheorem[style=thmstyle, name=Proposition,
-sibling=theoremBase]{propositionBase*}
+\usepackage{xifthen}
 
-\declaretheorem[style=thmstyle, name=Corollary,
-sibling=theoremBase]{corollaryBase}
-\declaretheorem[style=thmstyle, name=Corollary,
-sibling=theoremBase]{corollaryBase*}
+\ExplSyntaxOn
+\cs_new:Npn \uppercasefirst #1
+ {
+  \str_uppercase:f { \tl_head:n { #1 } }
+  \tl_tail:n { #1 }
+ }
+\ExplSyntaxOff
+
+
+\newcommand{\definetheoremenv}[2]{%
+    \newenvironment{#1}[1][]{
+    \ifthenelse{\isempty{##1}}{% 
+        \begin{#1Base}
+    }{% 
+        %TODO: add another ifelse for no-indexing solns
+        \begin{#1Base}[##1]\myindex[#2]{##1}
+    }%
+    }{%
+        \end{#1Base}
+    }
+}
+
+\newcommand{\definetheorem}[4]{%
+    \ifthenelse{\isempty{#3}}{% 
+        \def\numbering{numbered=no}
+    }{% 
+        \def\numbering{sibling=#3}
+    }%
+    \edef\default{style=#2style, name=\uppercasefirst{#1}, \numbering}
+    \ifthenelse{\isempty{#4}}{%
+        \edef\opt{\default}
+    }{%
+        \edef\opt{\default, #4}
+    }
+
+    \expandafter\declaretheorem\expandafter[\opt]{#1Base}
+    \expandafter\declaretheorem\expandafter[\opt]{#1*Base}
+    \expandafter\declaretheorem\expandafter[\opt]{\uppercasefirst{#1Base}} 
+
+    \tcolorboxenvironment{#1Base}{ #2=1 }
+    \tcolorboxenvironment{#1*Base}{ #2Star=1.1 }
+    \tcolorboxenvironment{\uppercasefirst{#1Base}}{ #2Cap }
+
+    \definetheoremenv{#1}{#2}
+    \definetheoremenv{#1*}{#2}
+    \definetheoremenv{\uppercasefirst{#1}}{#2}
+}
+
+
+\newcounter{thmcntr}[section]
+\counterwithin{thmcntr}{section}
+
+\definetheorem{theorem}{thm}{thmcntr}{}
+\definetheorem{lemma}{thm}{thmcntr}{}
+\definetheorem{proposition}{thm}{thmcntr}{}
+\definetheorem{corollary}{thm}{thmcntr}{}
+
+\definetheorem{definition}{def}{thmcntr}{}
+
+\definetheorem{example}{example}{thmcntr}{}
+\definetheorem{exercise}{example}{thmcntr}{}
+\definetheorem{remark}{example}{thmcntr}{}
+
+
+\newcounter{probcntr}[subsection]
+\counterwithin{probcntr}{subsection}
+
+\definetheorem{problem}{prob}{probcntr}{}
+
+
+\let\proof\undefined
+\let\endproof\undefined
+\definetheorem{proof}{soln}{}{qed=\qedsymbol,}
+\definetheorem{solution}{soln}{}{qed=\qedsymbol,}
+
+
+%%%%%%%%%%% old definitions
 
 \declaretheorem[style=emptythmstyle, name=, numbered=no]{emptythm}
-
-
-\tcolorboxenvironment{theoremBase}{ thmStyle=1 }
-\tcolorboxenvironment{theoremBase*}{ thmFancyStyle=1.1 }
-
-\tcolorboxenvironment{lemmaBase}{ thmStyle=1 }
-\tcolorboxenvironment{lemmaBase*}{ thmFancyStyle=1.1 }
-
-\tcolorboxenvironment{corollaryBase}{ thmStyle=1 }
-\tcolorboxenvironment{corollaryBase*}{ thmFancyStyle=1.1 }
-
-\tcolorboxenvironment{propositionBase}{ thmStyle=1 }
-\tcolorboxenvironment{propositionBase*}{ thmFancyStyle=1.1 }
-
-\tcolorboxenvironment{TheoremBase}{ 
-    theoremFancyColors,
-    theoremOuterSpacing=1.1, 
-    theoremInnerSpacing,
-    borderline={.05em}{0pt}{thmC}, 
-    top=.3\envskip,
-    bottom=.3\envskip 
-}
-
-\tcolorboxenvironment{emptythm}{ 
-    theoremFancyColors,
-    theoremOuterSpacing=1,     
-    theoremInnerSpacing,
-    borderline west={.1em}{0pt}{thmC}, 
-}
-
+\tcolorboxenvironment{emptythm}{ styleTabShaded=1.1 }
 
 \theoremstyle{definition}
 
-\declaretheorem[style=problemstyle, numberwithin=section,
-name=Problem]{problemBase}
-\declaretheorem[style=problemstyle, sibling=problemBase,
-name=Problem]{problemBase*}
-
-\tcolorboxenvironment{problemBase*}{ probColors, probSpacing, colback=thmBgC }
-\tcolorboxenvironment{problemBase}{ probColors, probSpacing, }
-
-\declaretheorem[style=problemstyle, numberwithin=problemBase, name=Generalization]{generalization}
-
-
-\declaretheorem[style=examplestyle, sibling=theoremBase,
-name=Example]{exampleBase}
-\declaretheorem[style=examplestyle, sibling=theoremBase,
-name=Example]{exampleBase*}
-
-\tcolorboxenvironment{exampleBase}{ exampleBase=white }
-\tcolorboxenvironment{exampleBase*}{ exampleBase=thmBgC, exampleBorder }
-
-
-\declaretheorem[style=definitionstyle, sibling=theoremBase,
-name=Definition]{definitionBase}
-\declaretheorem[style=definitionstyle, sibling=theoremBase,
-name=Definition]{definitionBase*}
-
-\tcolorboxenvironment{definitionBase}{ defColors, defSpacing=1 }
-\tcolorboxenvironment{definitionBase*}{ defFancyColors, defFancySpacing=1 }
-
 \declaretheorem[style=claimstyle, numberwithin=theoremBase, name=Claim]{claim}
 \declaretheorem[style=claimstyle, numbered=no, name=Claim]{claim*}
+\tcolorboxenvironment{claim}{ styleBlank }
+\tcolorboxenvironment{claim*}{ styleBlank }
+\renewcommand{\theclaim}{\arabic{claim}}
+
+% % \declaretheorem[style=remarkstyle, numbered=no]{note}
+% \declaretheorem[style=remarkstyle, sibling=theoremBase, name=Remark]{remark}
+% \declaretheorem[style=remarkstyle, numbered=no, name=Remark]{remark*}
+
 
 \newcommand{\impeq}[1]{
     \tcboxmath[
@@ -92,3 +120,34 @@ name=Definition]{definitionBase*}
     left=0pt, right=0pt, top=0pt, bottom=0pt
     ]{#1}
 }
+
+\theoremstyle{solnstyle}
+
+\declaretheorem[numbered=no, name=Partial Solution]{partsoln}
+
+\newtcolorbox{idea}{ solnColors=solC!90!pageC, solnSpacing=1, solnBorders }
+
+\theoremstyle{solnDefStyle}
+
+\declaretheorem[numbered=no, name=Definition]{soldef}
+\declaretheorem[numbered=no, name=Lemma]{sollem}
+
+\tcolorboxenvironment{sollem*}{
+    coltext=solC, blanker, breakable, left=1em,
+    before skip=20pt, after skip=20pt,
+    borderline west={.2em}{1pt}{thmC!80},
+}
+\tcolorboxenvironment{soldef*}{
+    coltext=solC, blanker, breakable, left=1em,
+    before skip=20pt, after skip=20pt,
+    borderline west={.1em}{0pt}{black!80},
+}
+
+
+\declaretheorem[style=hintstyle, numbered=no, name=]{hint}
+
+
+\let\origquote=\quote
+\def\quote{\origquote\itshape}
+
+\newtheorem*{abuse*}{Abuse of Notation}

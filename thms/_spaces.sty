@@ -2,10 +2,24 @@
 
 \ProcessOptions\relax
 
+\usepackage[nodisplayskipstretch]{setspace}
+
 \newlength{\envskip}
-\setlength{\envskip}{\f@size pt}
+% \setlength{\envskip}{\baselineskip}
+\setlength{\envskip}{\dimexpr\f@size pt + 2pt\relax}
 % \addtolength{\envskip}{5pt}
+
+\newlength{\padding}
+\setlength{\padding}{.2em}
 
 \newlength{\envLeftGap}
 \setlength{\envLeftGap}{.5em}
 
+
+% reduce spacing around display equations
+\g@addto@macro\normalsize{%
+    \setlength{\abovedisplayskip}{5pt}
+    \setlength{\belowdisplayskip}{5pt}
+    \setlength{\abovedisplayshortskip}{0pt}
+    \setlength{\belowdisplayshortskip}{5pt}
+}
