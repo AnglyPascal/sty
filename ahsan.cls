@@ -24,6 +24,8 @@
     \renewcommand\ahsan@class@name{memoir}
 }
 
+\DeclareStringOption[169]{aspectratio}
+
 \def\ahsan@fonts@en{yes}
 \DeclareVoidOption{no fonts}{\renewcommand\ahsan@fonts@en{no}}
 \def\ahsan@font@shape{serif}
@@ -47,7 +49,7 @@
 \DeclareStringOption[mono]{theme}
 
 %%% Theorems
-\DeclareStringOption[minimal]{theorems}
+\DeclareStringOption[]{theorems}
 
 %%% header and footer
 \DeclareStringOption[none]{hdr}
@@ -75,7 +77,7 @@
 
 \ProcessKeyvalOptions* %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\if@ahsan@beamer@is  \PassOptionsToClass{aspectratio=169}{beamer} \fi
+\if@ahsan@beamer@is  \PassOptionsToClass{aspectratio=\ahsan@aspectratio}{beamer} \fi
 
 %%% Load the class
 \LoadClass[\ahsan@font@size, \ahsan@page@size]{\ahsan@class@name}
@@ -121,8 +123,7 @@
 
 %%% setup index
 \if@ahsan@index@is
-    \RequirePackage[]{_index}
-    \RequirePackage[]{_thm_w_index}
+    \RequirePackage[\ahsan@class@name]{_index}
 \fi
 
 %%% Load code style

@@ -17,6 +17,7 @@
     \usepackage{subfig}
 
     \usepackage{tikz}
+    \usetikzlibrary{arrows}
 
     \newcommand{\incfig}[2][1]{%
         \fontsize{8}{9}\selectfont
@@ -25,5 +26,7 @@
         \fontsize{8}{11}\selectfont
     }
 \fi
+
+\numberwithin{figure}{section}
 
 \graphicspath{ {./images/}{./pages/} }

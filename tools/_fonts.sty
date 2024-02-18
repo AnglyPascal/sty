@@ -1,8 +1,8 @@
 \ProvidesPackage{_fonts}
 
-\newif\if@fonts@sans@is
-\newif\if@fonts@serif@is
-\newif\if@fonts@mono@is
+\newif\if@fonts@sans@is\@fonts@sans@isfalse
+\newif\if@fonts@serif@is\@fonts@serif@isfalse
+\newif\if@fonts@mono@is\@fonts@mono@isfalse
 
 \DeclareOption{sans}{\@fonts@sans@istrue}
 \DeclareOption{serif}{\@fonts@serif@istrue}
@@ -10,7 +10,7 @@
 
 \newif\if@fonts@beamer@is
 \DeclareOption{article}{\@fonts@beamer@isfalse}
-\DeclareOption{beamer}{\@fonts@beamer@istrue}
+\DeclareOption{beamer}{\@fonts@beamer@istrue\@fonts@sans@istrue}
 
 \newif\if@fonts@is
 \DeclareOption{yes}{\@fonts@istrue}
@@ -37,8 +37,8 @@
     \DeclareMathAlphabet{\mathcal}{OMS}{cmsy}{m}{n}
 
     \if@fonts@beamer@is
-        \setmainfont{Andika New Basic}
-        \setsansfont{Yanone Kaffeesatz}
+        \setmainfont{Yanone Kaffeesatz}
+        \setsansfont{Andika New Basic}
     \else
         \usepackage{kpfonts}
     \fi

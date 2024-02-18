@@ -416,10 +416,10 @@
     morecomment=[l]{--},
     emph={[3]f, g},
     emphstyle={[3]\bfseries},
-    emph={[4]h, t},
+    emph={[4]h, t, p, q},
     emphstyle={[4]\bfseries},
-    emph={[5]p, c, s},
-    emphstyle={[5]},
+    % emph={[5]p, c, s},
+    % emphstyle={[5]},
     literate=*
         {<-}{{\textcolor{fgC!80!pageC}{<-}}}{2}
         {->}{{\textcolor{fgC!80!pageC}{->}}}{2}
@@ -599,43 +599,37 @@
 }
 
 
-\usepackage{caption}
-% defines algorithm counter for chapter-level
-\newcounter{nalg}[section] 
-%defines appearance of the algorithm counter
-\renewcommand{\thenalg}{\thesection.\arabic{nalg}} 
-% defines a new caption label as Algorithm x.y
-\DeclareCaptionLabelFormat{algocaption}{Algorithm \thenalg} 
 \lstnewenvironment{algorithm}[1][] 
 {   
-    \refstepcounter{nalg}
-    \captionsetup{labelformat=algocaption,labelsep=colon} 
+    \counterwithin{lstlisting}{section}
+    \setcounter{lstlisting}{\value{theoremBase}}
+    \renewcommand\lstlistingname{Algorithm}
     \lstset{style=myalgo, caption={[\texttt{#1}]\textbf{#1}}, label={#1}}
-}{}
+}{\addtocounter{theoremBase}{1}}
 
-\DeclareCaptionLabelFormat{scalacaption}{Scala \thenalg} 
 \lstnewenvironment{scala}[1][]
 {   
-    \refstepcounter{nalg}
-    \captionsetup{labelformat=scalacaption,labelsep=colon} 
+    \counterwithin{lstlisting}{section}
+    \setcounter{lstlisting}{\value{theoremBase}}
+    \renewcommand\lstlistingname{Scala}
     \lstset{style=myscala, caption={[\texttt{#1}]\textbf{#1}}}
-}{}
+}{\addtocounter{theoremBase}{1}}
 
-\DeclareCaptionLabelFormat{javacaption}{Java \thenalg} 
 \lstnewenvironment{java}[1][]
 {   
-    \refstepcounter{nalg}
-    \captionsetup{labelformat=javacaption,labelsep=colon} 
+    \counterwithin{lstlisting}{section}
+    \setcounter{lstlisting}{\value{theoremBase}}
+    \renewcommand\lstlistingname{Java}
     \lstset{style=myjava, caption={[\texttt{#1}]\textbf{#1}}}
-}{}
+}{\addtocounter{theoremBase}{1}}
 
-\DeclareCaptionLabelFormat{haskellcaption}{Haskell \thenalg} 
 \lstnewenvironment{haskell}[1][]
 {   
-    \refstepcounter{nalg}
-    \captionsetup{labelformat=haskellcaption,labelsep=colon} 
+    \counterwithin{lstlisting}{section}
+    \setcounter{lstlisting}{\value{theoremBase}}
+    \renewcommand\lstlistingname{Haskell}
     \lstset{style=myhaskell, caption={[\texttt{#1}]\textbf{#1}}}
-}{}
+}{\addtocounter{theoremBase}{1}}
 
 \AtBeginDocument{%
     \renewcommand\lstlistoflistings{\bgroup

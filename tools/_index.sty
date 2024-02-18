@@ -1,50 +1,45 @@
 \ProvidesPackage{_index}
 
+\newif\if@index@article@is
+\DeclareOption{article}{\@index@article@istrue}
+\DeclareOption{memoir}{\@index@article@isfalse}
+\DeclareOption{beamer}{\@index@article@isfalse}
+
 \ProcessOptions\relax
 
-\ifahsanindex
-    \ifahsan@article
-        % \usepackage{mfirstuc}
-        \newcommand{\indef}[1]{\index[def]{\Sectionname!#1}\imp{#1}}
-    \else
-        \newcommand{\indef}[1]{\index[def]{\Chaptername!\Sectionname!#1}\imp{#1}}
-    \fi
-\else
-    \newcommand{\indef}[1]{\textbf{#1}}
-\fi
 
 % index making
-\ifahsanindex
-    \usepackage{imakeidx}
+\usepackage{imakeidx}
 
-    \indexsetup{level=\section*, toclevel=section, headers={\indexname}{}}
+\indexsetup{level=\section*, toclevel=section, headers={\indexname}{}}
 
-    \makeindex[name=def,   title=Definitions, options= {-s indStyle.ist}]
-    \makeindex[name=prob,  title=Problems,    options= {-s indStyle.ist}]
-    \makeindex[name=thm,   title=Theorems,    options= {-s indStyle.ist}]
-    \makeindex[name=strat, title=Strategies,  options= {-s indStyle.ist}]
-    \makeindex[            title=Misc,        options= {-s indStyle.ist}]
-    % \makeindex[name=cat, title=Categories, options= -s indStyle.ist]
+\makeindex[name=def,   title=Definitions, options= {-s _index_style.ist}]
+\makeindex[name=prob,  title=Problems,    options= {-s _index_style.ist}]
+\makeindex[name=thm,   title=Theorems,    options= {-s _index_style.ist}]
+\makeindex[name=strat, title=Strategies,  options= {-s _index_style.ist}]
+\makeindex[            title=Misc,        options= {-s _index_style.ist}]
+% \makeindex[name=cat, title=Categories, options= -s _index_style.ist]
+
+\def\Chaptername{No Chpater}
+\def\Sectionname{No Section}
+\def\Subsectionname{No Subsection}
+\let\Chaptermark\chaptermark
+\def\chaptermark#1{\def\Chaptername{#1}\Chaptermark{#1}}
+\let\Sectionmark\sectionmark
+\def\sectionmark#1{\def\Sectionname{#1}\Sectionmark{#1}}
+\let\Subsectionmark\subsectionmark
+\def\subsectionmark#1{\def\Subsectionname{#1}\Subsectionmark{#1}}
+\let\Subsubsectionmark\subsubsectionmark
+\def\subsubsectionmark#1{\def\Subsubsectionname{#1}\Subsubsectionmark{#1}}
+
+\if@index@article@is
+    \newcommand\myindex[2][]{\index[#1]{\Sectionname!#2}}
+\else
+    \newcommand\myindex[2][]{\index[#1]{\Chaptername!\Sectionname!#2}}
 \fi
 
-\ifahsanindex
-    \def\Chaptername{No Chpater}
-    \def\Sectionname{No Section}
-    \def\Subsectionname{No Subsection}
-    \let\Chaptermark\chaptermark
-    \def\chaptermark#1{\def\Chaptername{#1}\Chaptermark{#1}}
-    \let\Sectionmark\sectionmark
-    \def\sectionmark#1{\def\Sectionname{#1}\Sectionmark{#1}}
-    \let\Subsectionmark\subsectionmark
-    \def\subsectionmark#1{\def\Subsectionname{#1}\Subsectionmark{#1}}
-    \let\Subsubsectionmark\subsubsectionmark
-    \def\subsubsectionmark#1{\def\Subsubsectionname{#1}\Subsubsectionmark{#1}}
-
-    \ifahsan@article
-        \newcommand\myindex[2][]{\index[#1]{\Sectionname!#2}}
-    \else
-        \newcommand\myindex[2][]{\index[#1]{\Chaptername!\Sectionname!#2}}
-    \fi
+\if@index@article@is
+    \renewcommand{\indef}[1]{\index[def]{\Sectionname!#1}\imp{#1}}
 \else
-    \newcommand\myindex[2][]{}
+    \renewcommand{\indef}[1]{\index[def]{\Chaptername!\Sectionname!#1}\imp{#1}}
 \fi
