@@ -135,3 +135,19 @@
 \else
     \RequirePackage[]{_enum}
 \fi
+
+%%% suppress harmless warnings
+%
+% overfull 
+\hfuzz=100pt 
+% math shift error from hyperref
+% https://tex.stackexchange.com/questions/537449/removing-math-shift
+\pdfstringdefDisableCommands{\let\HyPsd@CatcodeWarning\@gobble}
+% all hyperref warnings
+% https://tex.stackexchange.com/questions/415625/avoiding-hyperref-warning-ignoring-empty-anchor
+\def\Hy@Warning#1{}
+% underfull badness
+\hbadness = 10000
+
+%%% package for any testing
+\usepackage{_tests}
