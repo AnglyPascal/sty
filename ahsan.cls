@@ -36,7 +36,7 @@
 \DeclareVoidOption{sans}{\renewcommand\ahsan@font@shape{sans}}
 \DeclareVoidOption{mono}{\renewcommand\ahsan@font@shape{mono}}
 
-\def\ahsan@font@size{10pt}
+\def\ahsan@font@size{11pt}
 \DeclareVoidOption{10pt}{\renewcommand\ahsan@font@size{10pt}}
 \DeclareVoidOption{11pt}{\renewcommand\ahsan@font@size{11pt}}
 \DeclareVoidOption{12pt}{\renewcommand\ahsan@font@size{12pt}}
