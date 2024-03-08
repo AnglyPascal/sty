@@ -44,6 +44,11 @@
 \DeclareVoidOption{11pt}{\renewcommand\ahsan@font@size{11pt}}
 \DeclareVoidOption{12pt}{\renewcommand\ahsan@font@size{12pt}}
 
+\DeclareVoidOption{kindle}{
+    \PassOptionsToPackage{kindle}{_article}
+    \renewcommand\ahsan@font@size{10pt}
+}
+
 %%% Page size
 \def\ahsan@page@size{a4paper}
 

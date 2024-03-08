@@ -1,5 +1,8 @@
 \ProvidesPackage{_article}
 
+\newif\if@kindle@is \@kindle@isfalse
+\DeclareOption{kindle} {\@kindle@istrue}
+
 \ProcessOptions\relax
 
 \usepackage{titlesec}
@@ -19,7 +22,11 @@
 \titlespacing*{\section}{0pt}{6ex plus 1ex minus 1ex}{3ex plus .2ex}
 \titlespacing*{\subsection}{0pt}{4ex plus 1ex minus 1ex}{1ex plus .2ex}
 
-\usepackage[a4paper, margin=1in]{geometry}
+\if@kindle@is
+    \usepackage[a6paper, landscape, margin=0pt]{geometry}
+\else
+    \usepackage[a4paper, margin=1in]{geometry}
+\fi
 
 \setlength\parindent{0pt}
 \setlength\parskip{10pt}
