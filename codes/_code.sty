@@ -2,6 +2,7 @@
 \ProvidesPackage{_code}
 
 \RequirePackage{listings, relsize}
+\RequirePackage{xifthen}
 
 \def\keywordstyle{\bfseries\color{thmC}}
 \def\typestyle{\bfseries\color{thmC!70}}
@@ -16,6 +17,7 @@
 \def\regstyle{\bfseries\color{fgC!80!pageC}}
 \def\codefontsize{\small}
 \def\backgroundstyle{\color{defBgC!20!pageC}}
+\def\codestyle{\ttfamily}
 
 \lstdefinestyle{numbers}{
     numbers=left,
@@ -26,7 +28,7 @@
 }
 
 \lstdefinestyle{fonts}{
-    basicstyle=\linespread{1}\codefontsize\ttfamily,
+    basicstyle=\linespread{1}\codefontsize\codestyle,
     commentstyle=\commentstyle,
     stringstyle=\stringstyle,
     showstringspaces=false,
@@ -599,13 +601,13 @@
 }
 
 
-\lstnewenvironment{algorithm}[1][] 
+\lstnewenvironment{algorithm}[2][]
 {   
     \counterwithin{lstlisting}{section}
     \setcounter{lstlisting}{\value{theoremBase}}
     \renewcommand\lstlistingname{Algorithm}
-    % \lstset{style=myalgo, caption={[\texttt{#1}]\textbf{#1}}, label={\normalfont{#1}}}
-    \lstset{style=myalgo, caption={[\texttt{#1}]\textbf{#1}}}
+    \renewcommand{\lstlistlistingname}{List of \lstlistingname s}
+    \lstset{style=myalgo, caption={[\texttt{#1}]\textbf{#1}}, label={#2}}
 }{\addtocounter{theoremBase}{1}}
 
 \lstnewenvironment{scala}[1][]

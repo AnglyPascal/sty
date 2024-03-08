@@ -159,3 +159,15 @@
 \newcommand{\kp}{\mathfrak p}
 \newcommand{\kq}{\mathfrak q}
 
+
+\newcommand*\bigcdot{\mathpalette\bigcdot@{.6}}
+\newcommand*\bigcdot@[2]{\mathbin{\vcenter{\hbox{\scalebox{#2}{$\m@th#1\bullet$}}}}}
+
+\newcommand{\ito}{\bigcdot}
+\renewcommand{\phi}{\varphi}
+
+\let\oldemptyset\emptyset
+\let\emptyset\varnothing
+
+\let\oldepsilon\epsilon
+\let\epsilon\varepsilon

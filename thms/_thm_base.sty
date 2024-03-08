@@ -151,3 +151,14 @@
 \def\quote{\origquote\itshape}
 
 \newtheorem*{abuse*}{Abuse of Notation}
+
+
+% custom environment
+\iffalse
+\refstepcounter{thmcntr}
+\begin{emptythm}[Assumption \thethmcntr. (Locality)]
+    When two spatially separated systems are measured at the same time, the choice of
+    measurement on one system does not affect the outcome of the measurement performed
+    on the other system.
+\end{emptythm}
+\fi

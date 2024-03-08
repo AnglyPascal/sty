@@ -73,9 +73,6 @@
 %%% figures and tikz
 \DeclareStringOption[full]{figures}
 
-%%% toc 
-\DeclareStringOption[en]{toc}
-
 %%% bibliography 
 \DeclareStringOption[]{ref}
 
@@ -84,6 +81,8 @@
 \@ahsan@code@istrue
 \DeclareVoidOption{no code}{\@ahsan@code@isfalse}
 
+%%% toc 
+\DeclareStringOption[en]{toc}
 
 %%% Send the rest of options to the class
 \DeclareDefaultOption{

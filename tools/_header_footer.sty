@@ -33,3 +33,14 @@
 %%% Footnote specs
 \usepackage[hang]{footmisc}
 % \setlength{\footnotesep}{.8\baselineskip}
+
+%%% footnote back reference
+\usepackage{footnotebackref}
+% https://tex.stackexchange.com/questions/78423
+\LetLtxMacro{\BHFN@Old@footnotemark}{\@footnotemark}
+\renewcommand*{\@footnotemark}{%
+    \refstepcounter{BackrefHyperFootnoteCounter}%
+    \xdef\BackrefFootnoteTag{bhfn:\theBackrefHyperFootnoteCounter}%
+    \label{\BackrefFootnoteTag}%
+    \BHFN@Old@footnotemark
+}
