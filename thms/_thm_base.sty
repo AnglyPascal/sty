@@ -77,6 +77,10 @@
 \definetheorem{proposition}{thm}{thmcntr}{}
 \definetheorem{corollary}{thm}{thmcntr}{}
 
+\newcounter{claimcntr}[thmcntr]
+\renewcommand{\theclaimcntr}{\arabic{claimcntr}}
+\definetheorem{claim}{claim}{claimcntr}{}
+
 \definetheorem{definition}{def}{thmcntr}{}
 
 \definetheorem{example}{example}{thmcntr}{}
@@ -87,7 +91,7 @@
 \newcounter{probcntr}[subsection]
 \counterwithin{probcntr}{subsection}
 
-\definetheorem{problem}{prob}{probcntr}{}
+\definetheorem{problem}{example}{probcntr}{}
 
 
 \let\proof\undefined
@@ -100,19 +104,6 @@
 
 \declaretheorem[style=emptythmstyle, name=, numbered=no]{emptythm}
 \tcolorboxenvironment{emptythm}{ styleTabShaded=1.1 }
-
-\theoremstyle{definition}
-
-\declaretheorem[style=claimstyle, numberwithin=theoremBase, name=Claim]{claim}
-\declaretheorem[style=claimstyle, numbered=no, name=Claim]{claim*}
-\tcolorboxenvironment{claim}{ styleBlank }
-\tcolorboxenvironment{claim*}{ styleBlank }
-\renewcommand{\theclaim}{\arabic{claim}}
-
-% % \declaretheorem[style=remarkstyle, numbered=no]{note}
-% \declaretheorem[style=remarkstyle, sibling=theoremBase, name=Remark]{remark}
-% \declaretheorem[style=remarkstyle, numbered=no, name=Remark]{remark*}
-
 
 \newcommand{\impeq}[1]{
     \tcboxmath[
