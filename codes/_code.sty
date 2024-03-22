@@ -16,7 +16,7 @@
 \def\conststyle{\bfseries\color{defC}}
 \def\regstyle{\bfseries\color{fgC!80!pageC}}
 \def\codefontsize{\small}
-\def\backgroundstyle{\color{defBgC!20!pageC}}
+\def\backgroundstyle{}
 \def\codestyle{\ttfamily}
 
 \lstdefinestyle{numbers}{
@@ -39,7 +39,7 @@
 
 \lstdefinestyle{colors}{
     keywordstyle=\keywordstyle,
-    backgroundcolor=\backgroundstyle,
+    % backgroundcolor=\backgroundstyle,
     frame=tb,
     rulecolor=\color{defC},
     literate=*
@@ -607,7 +607,7 @@
     \setcounter{lstlisting}{\value{theoremBase}}
     \renewcommand\lstlistingname{Algorithm}
     \renewcommand{\lstlistlistingname}{List of \lstlistingname s}
-    \lstset{style=myalgo, caption={[\texttt{#1}]\textbf{#1}}, label={#2}}
+    \lstset{style=myalgo, caption={[#1]\textbf{#1}}, label={#2}}
 }{\addtocounter{theoremBase}{1}}
 
 \lstnewenvironment{scala}[1][]
@@ -637,7 +637,8 @@
 \AtBeginDocument{%
     \renewcommand\lstlistoflistings{\bgroup
         \let\contentsname\lstlistlistingname
-        \def\l@lstlisting##1##2{\@dottedtocline{1}{0em}{2em}{\small \texttt{##1}}{\small##2}\vspace{-.7em}}
+        \def\l@lstlisting##1##2{\@dottedtocline{1}{0em}{3em}{\small \ttfamily ##1}{##2}\vspace{-.1em}}
         \let\lst@temp\@starttoc \def\@starttoc##1{\lst@temp{lol}}%
     \tableofcontents \egroup}
 }
+
