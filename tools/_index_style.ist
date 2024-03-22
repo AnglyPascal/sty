@@ -7,7 +7,7 @@ headings_flag 0
 heading_prefix "\n\\large\\noindent\\texttt{\\textbf{ "
 heading_suffix "}}\\par\\nopagebreak\n"
 
-item_0  "\n \\vspace{.8em} \\item \\small \\bfseries "
+item_0  "\n\n \\vspace{.8em} \\item \\small \\bfseries "
 
 item_01 "\n \\vspace{.3em} \\subitem \\footnotesize \\normalfont "
 item_x1 "\n \\vspace{.3em} \\subitem \\footnotesize \\normalfont "

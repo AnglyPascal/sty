@@ -36,23 +36,43 @@
 \renewcommand*\subsubitem{\@idxitem \nobreak \hspace*{15\p@}}
 
 \makeindex[name=def,   title=Definitions, options= {-s \indexStyle}]
-\makeindex[name=prob,  title=Problems,    options= {-s \indexStyle}]
+\makeindex[name=prob,  title=Problems, columns=1, options= {-s \indexStyle}]
 \makeindex[name=thm,   title=Theorems,    options= {-s \indexStyle}]
 \makeindex[name=strat, title=Strategies,  options= {-s \indexStyle}]
 \makeindex[            title=Misc,        options= {-s \indexStyle}]
 % \makeindex[name=cat, title=Categories, options= {-s \indexStyle}]
 
+\usepackage{fmtcount}% http://ctan.org/pkg/fmtcount
+\newcommand{\printcntr}[1]{%
+    \ifnum\value{#1}<10 0\fi\arabic{#1}%
+}
+
 \def\Chaptername{No Chpater}
 \def\Sectionname{No Section}
 \def\Subsectionname{No Subsection}
+
+% https://tex.stackexchange.com/questions/30930/how-to-output-a-counter-with-leading-zeros
+
 \let\Chaptermark\chaptermark
-\def\chaptermark#1{\def\Chaptername{\thechapter. #1}\Chaptermark{#1}}
+\def\chaptermark#1{%
+    \expandafter\def\expandafter\Chaptername{\printcntr{chapter}. #1}%
+    \Chaptermark{#1}%
+}
 \let\Sectionmark\sectionmark
-\def\sectionmark#1{\def\Sectionname{\thesection. #1}\Sectionmark{#1}}
+\def\sectionmark#1{%
+    \expandafter\def\expandafter\Sectionname{\printcntr{section}. #1}%
+    \Sectionmark{#1}%
+}
 \let\Subsectionmark\subsectionmark
-\def\subsectionmark#1{\def\Subsectionname{\thesubsection. #1}\Subsectionmark{#1}}
+\def\subsectionmark#1{%
+    \expandafter\def\expandafter\Subsectionname{\printcntr{subsection}. #1}%
+    \Subsectionmark{#1}%
+}
 \let\Subsubsectionmark\subsubsectionmark
-\def\subsubsectionmark#1{\def\Subsubsectionname{\thesubsubsection. #1}\Subsubsectionmark{#1}}
+\def\subsubsectionmark#1{%
+    \expandafter\def\expandafter\Subsubsectionname{\printcntr{subsubsection}. #1}%
+    \Subsubsectionmark{#1}%
+}
 
 \if@index@article@is
     \newcommand\myindex[2][]{\index[#1]{\Sectionname!#2}}
@@ -71,4 +91,5 @@
 \else
     \newcommand{\inthm}[1]{\index[thm]{\Chaptername!\Sectionname!\MakeUppercase #1}\textbf{#1}}
 \fi
+
 
