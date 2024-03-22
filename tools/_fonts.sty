@@ -52,3 +52,20 @@
 \if@fonts@sans@is  \renewcommand{\familydefault}{\sfdefault} \fi
 \if@fonts@serif@is \renewcommand{\familydefault}{\rmdefault} \fi
 \if@fonts@mono@is  \renewcommand{\familydefault}{\ttdefault} \fi
+
+
+%%%% make math tt inside tt
+% https://tex.stackexchange.com/questions/119879/math-symbols-in-tt-font
+\usepackage[subdued,defaultmathsizes]{mathastext}
+\MTnonlettersobeymathxx     % math alphabets will act on (, ), [, ], etc...
+\MTexplicitbracesobeymathxx % math alphabets will act on \{ and \}
+\MTfamily{cmtt}             % we will declare a math version using tt font
+\Mathastext[typewriter]     % the math version is called typewriter
+
+\usepackage{xpatch}
+\xapptocmd{\ttfamily}{\mathversion{typewriter}}{}{}
+
+
+%%%% make math bold inside bf
+\AddToHook{cmd/bfseries/after}{\boldmath}
+\AddToHook{cmd/normalfont/after}{\unboldmath}
