@@ -17,8 +17,9 @@
     \usepackage{float}
     \usepackage{subfig}
 
-    \usepackage{tikz}
+    \usepackage{tikz, calc}
     \usetikzlibrary{arrows}
+    \usetikzlibrary{cd}
 
     \newcommand{\incfig}[2][1]{%
         \fontsize{8}{9}\selectfont
@@ -31,3 +32,25 @@
 \numberwithin{figure}{section}
 
 \graphicspath{ {./images/}{./pages/} }
+
+% venn diagram:
+%https://texample.net/media/tikz/examples/TEX/venn-diagram.tex
+
+
+
+%%%% Venn diagram defs
+
+\def\firstcircle{(0,0) circle (1.5cm)}
+\def\secondcircle{(0:2cm) circle (1.5cm)}
+\def\thirdcircle{(45:2cm) circle (1.5cm)}
+
+\def\firstcenter{(0,0)}
+\def\secondcenter{(0:2cm)}
+\def\thirdcenter{(45:2cm)}
+
+\tikzset{
+    filled/.style={fill=circle area, draw=circle edge, thick},
+    outline/.style={draw=circle edge, thick}
+}
+\colorlet{circle edge}{black}
+\colorlet{circle area}{black!20}
