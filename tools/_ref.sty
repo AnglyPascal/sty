@@ -5,6 +5,7 @@
 
 \ProcessOptions\relax
 
+\usepackage{xr}
 \usepackage{hyperref}
 
 \hypersetup{
@@ -15,9 +16,9 @@
     citecolor = defC,
 }
 
-\renewcommand{\sectionautorefname}{Section}
-\renewcommand{\subsectionautorefname}{Section}
-\renewcommand{\subsubsectionautorefname}{Section}
+\renewcommand{\sectionautorefname}{\S}
+\renewcommand{\subsectionautorefname}{\S}
+\renewcommand{\subsubsectionautorefname}{\S}
 
 \numberwithin{equation}{section}
 
@@ -30,5 +31,31 @@
     \addbibresource{refs.bib}
 \fi
 
-\newcommand{\thmref}[1]{\nameref{#1} {(\autoref{#1})}}
-\newcommand{\sideref}[1]{\hfill[\autoref{#1}]}
+\let\oldautoref\autoref
+\renewcommand{\autoref}[2][]{%
+    \oldautoref{#1-#2} (\hrefpdf{#1})%
+}
+
+\newcommand{\thmref}[2][]{%
+    \ifthenelse{\equal{#1}{}} {%
+        \nameref{#2} {(\oldautoref{#2})}%
+    }{%
+        \nameref{#1-#2} (\oldautoref{#1-#2}, \hrefpdf{#1})%
+    }%
+}
+
+\newcommand{\sideref}[2][]{%
+    \ifthenelse{\equal{#1}{}} {%
+        \hfill[\oldautoref{#2}]%
+    }{%
+        \hfill[\oldautoref{#1-#2}, \hrefpdf{#1}]%
+    }%
+}
+
+\newcommand{\hrefpdf}[1]{%
+    \expandafter\href{run:\csname #1pdf\endcsname}{#1}%
+}
+\newcommand{\externaldoc}[2]{
+    \externaldocument[#1-]{#2}
+    \expandafter\def\csname #1pdf\endcsname{#2.pdf}
+}
