@@ -10,6 +10,9 @@
   \setlength\myskip{\parskip}%
 }
 
+\newlength{\borderwidth}
+\setlength{\borderwidth}{.08em}
+
 \tcbset{
     envParSpacing/.style={
         before upper={
@@ -32,12 +35,12 @@
     tabbed/.style={
         tile, 
         breakable, 
-        borderline west={.08em}{0pt}{thmC},
+        borderline west={\borderwidth}{0pt}{thmC},
     },
     boxed/.style={
         tile,
         % breakable,
-        borderline={.08em}{0pt}{thmC}, 
+        borderline={\borderwidth}{0pt}{thmC}, 
     }
 }
 
@@ -57,9 +60,11 @@
     },
     styleTabbed/.style={
         colorsBlank,
-        tabbed=#1,
-        top=0pt, bottom=0pt, left=1.3\padding, right=0pt,
+        tabbed,
         envParSpacing=.8, 
+        top=0pt, bottom=0pt, 
+        right=-2pt,  %% nasty hack
+        left=1.3\padding, 
     },
     styleTabShaded/.style={
         colorsShaded,
