@@ -81,7 +81,7 @@
 }
 
 \tcbset{
-    claim/.style={ styleBlank=#1, },
+    claim/.style={ styleBlank=#1, after skip=\parskip, before skip=\envskip },
     claimStar/.style={ styleTabShaded=#1, },
     claimCap/.style={ styleTabBoxed, },
 }
@@ -107,7 +107,7 @@
 \tcbset{
     example/.style={ styleBlank=#1, },
     exampleStar/.style={ styleTabShaded=#1, },
-    exampleCap/.style={ styleTabShaded, },
+    exampleCap/.style={ styleBoxed, },
 }
 
 \tcbset{
