@@ -5,7 +5,7 @@
 
 \ProcessOptions\relax
 
-\usepackage{titlesec}
+\usepackage[nobottomtitles]{titlesec}
 
 \titleformat{\section}
     {\color{thmC}\normalfont\Large\bfseries}
@@ -31,3 +31,23 @@
 \setlength\parindent{0pt}
 \setlength\parskip{10pt}
 
+
+\def\maketitle{%
+  \newpage
+  \null
+  \vskip 2em%
+  \begin{center}%
+  \let \footnote \thanks
+    {\LARGE\bfseries \@title \par}%
+    \vskip 1.5em%
+    {\large
+      \lineskip .5em%
+      \begin{tabular}[t]{c}%
+        \@author
+      \end{tabular}\par}%
+    \vskip 1em%
+    %{\large \@date}%
+  \end{center}%
+  \par
+  \vskip 1.5em%
+}
