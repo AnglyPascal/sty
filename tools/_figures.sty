@@ -15,7 +15,7 @@
     \usepackage{pdfpages}
 
     \usepackage{float}
-    \usepackage{subfig}
+    \usepackage{subfigure}
 
     \usepackage{tikz, calc}
     \usetikzlibrary{arrows}
@@ -50,7 +50,19 @@
 
 \tikzset{
     filled/.style={fill=circle area, draw=circle edge, thick},
-    outline/.style={draw=circle edge, thick}
+    outline/.style={draw=circle edge, thick},
+    vertex/.style={
+        circle, 
+        minimum size=.1cm, 
+        inner sep=0pt, 
+        fill=black, 
+        draw=circle edge, 
+    },
+    arrow/.style={
+        ->,
+        >=latex,
+        draw=circle edge, 
+    },
 }
 \colorlet{circle edge}{black}
 \colorlet{circle area}{black!20}
