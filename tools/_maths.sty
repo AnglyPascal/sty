@@ -39,19 +39,6 @@
 \newcommand{\for}{\text{ for }}
 \newcommand{\st}{\text{ such that, }}
 
-\renewcommand{\a}{\alpha}
-\renewcommand{\b}{\beta}
-\renewcommand{\c}{\chi}
-\renewcommand{\t}{\theta}
-% \renewcommand{\i}{\infty}
-\renewcommand{\k}{\kappa}
-\renewcommand{\l}{\lambda}
-\renewcommand{\r}{\rho}
-\renewcommand{\t}{\varphi}
-\renewcommand{\u}{\upsilon}
-\renewcommand{\L}{\Lambda}
-
-
 \renewcommand{\mod}{\mathrm{mod}}
 \newcommand{\supp}{\mathrm{supp}}	
 \newcommand{\ol}{\overline}
@@ -59,13 +46,6 @@
 \newcommand{\wt}{\widetilde}
 \newcommand{\wh}{\widehat}
 \newcommand{\dash}{\textunderscore}
-
-\newcommand{\N}{\mathbb{N}}
-\newcommand{\R}{\mathbb{R}}
-\newcommand{\Z}{\mathbb{Z}}
-\newcommand{\Q}{\mathbb{Q}}
-% \newcommand{\C}{\mathbb{C}}
-\renewcommand{\P}{\mathbb{P}}
 
 \newcommand{\cosec}{\mathrm{cosec}\ }
 
@@ -115,7 +95,6 @@
 \newcommand{\On}{\mathrm{On}} % ordinals
 \DeclareMathOperator{\img}{Im} % Image
 \newcommand{\nullop}{\operatorname{null}} % null
-\DeclareMathOperator{\Img}{im} % Image
 \DeclareMathOperator{\coker}{coker} % Cokernel
 \DeclareMathOperator{\Coker}{Coker} % Cokernel
 \DeclareMathOperator{\Ker}{Ker} % Kernel
@@ -171,3 +150,19 @@
 
 \let\oldepsilon\epsilon
 \let\epsilon\varepsilon
+
+\let\oldmathbf\mathbf
+\let\mathbf\bm
+
+% \let\oldint\int
+% \let\int\varint
+
+
+\usepackage{nccmath}
+\newcommand\medcup[1]{\medmath{\bigcup#1}}
+\newcommand\medcap[1]{\medmath{\bigcap#1}}
+
+\def\suml{\sum\limits}
+
+\NewCommandCopy\oldemph\emph
+\renewcommand{\emph}[1]{\textbf{\oldemph{#1}}}
