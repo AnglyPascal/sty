@@ -57,4 +57,50 @@
 
 % \AddToHook{cmd/section/before}{\clearpage}
 
-\renewcommand{\imp}[1]{\textcolor{NordRed}{\textbf{#1}}}
+% \renewcommand\imp[1]{\textcolor{NordRed}{\textbf{#1}}}
+\renewcommand\imp[1]{\textbf{#1}}
+
+
+%%% past papers
+\if@oxford@papers@is
+    \usepackage{nextpage}
+
+    \usepackage{fancyhdr}
+    \pagestyle{fancy}
+    \fancyhf{}
+    \fancyhead[L]{\rightmark}
+    \fancyhead[R]{\thepage}
+
+    \newcommand{\addpaper}[1]{
+        \cleartoevenpage
+        \subsection{#1}
+        \includepdf[pages=2-, noautoscale=true, scale=1, pagecommand={\pagestyle{fancy}}]{#1}
+    }
+
+    \newcommand{\addsoln}[1]{
+        \cleartoevenpage
+        \subsection{#1}
+        \includepdf[pages=-, noautoscale=true, scale=1, pagecommand={\pagestyle{fancy}}]{#1_soln}
+    }
+
+    \newcommand{\papersection}[1]{
+        % \section{#1}
+        % \addcontentsline{toc}{section}{\textbf{#1}}
+        % \stepcounter{section}
+        \phantomsection
+        \stepcounter{section}
+        \addcontentsline{toc}{section}{#1}
+    }
+    \author{}
+    \date{}
+    \renewcommand\cftsubsecafterpnum{\vskip8pt}
+
+
+    \titleformat{\subsection}
+        {\color{thmC!90!defC}\normalfont\LARGE\bfseries}
+        {}
+        {.5em}
+        {}
+\fi
+
+

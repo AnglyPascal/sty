@@ -29,6 +29,9 @@
     \renewcommand\ahsan@class@name{memoir}
 }
 
+\DeclareVoidOption{pastpapers}{
+    \PassOptionsToPackage{pastpapers}{_oxford}
+}
 \DeclareVoidOption{oxford}{\@ahsan@oxford@istrue}
 
 \DeclareStringOption[169]{aspectratio}
