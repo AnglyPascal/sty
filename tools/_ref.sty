@@ -3,6 +3,9 @@
 \newif\if@ref@bib@is \@ref@bib@isfalse
 \DeclareOption{bib}{\@ref@bib@istrue}
 
+\newif\if@ref@cap@is \@ref@cap@isfalse
+\DeclareOption{refcap}{\@ref@bib@istrue}
+
 \ProcessOptions\relax
 
 \usepackage{xr}
@@ -22,6 +25,13 @@
 
 \numberwithin{equation}{section}
 
+
+\if@ref@bib@is
+% TODO move to some other file
+\usepackage{mfirstuc}
+\def\firstToLow#1{\expandafter\firstToLowA#1!!}
+\def\firstToLowA#1#2!!{\MakeLowercase{#1}#2}
+
 \if@ref@bib@is
     \usepackage[
         style=apa,
@@ -31,29 +41,137 @@
     \addbibresource{refs.bib}
 \fi
 
-\let\oldautoref\autoref
-\renewcommand{\autoref}[2][]{%
-    \oldautoref{#1-#2} (\hrefpdf{#1})%
-}
+\AtBeginDocument{%
+  \newcommand\My@Macro[1]{#1}%
+  \newcommand\My@Thirdoffive[5]{\My@Macro{#3}}%
+  \renewcommand*\@namerefstar[1]{%
+    \HyRef@StarSetRef{#1}\My@Thirdoffive
+  }%
+  \renewcommand*\T@nameref[1]{%
+    \begingroup
+    \let\label\@gobble
+    \NR@setref{#1}\My@Thirdoffive{#1}%
+    \endgroup
+  }%
+  \DeclareRobustCommand\fucnameref{%
+    \@ifstar\fucnameref@star\fucnameref@nostar
+  }%
+  \newcommand\fucnameref@star[1]{%
+    \begingroup
+    \let\My@Macro=\makefirstuc
+    \oldnameref*{#1}%
+    \endgroup
+  }%
+  \newcommand\fucnameref@nostar[1]{%
+    \begingroup
+    \let\My@Macro=\makefirstuc
+    \oldnameref{#1}%
+    \endgroup
+  }%
+  \DeclareRobustCommand\ucnameref{%
+    \@ifstar\ucnameref@star\ucnameref@nostar
+  }%
+  \newcommand\ucnameref@star[1]{%
+    \begingroup
+    \MFUhyphentrue
+    \let\My@Macro=\ecapitalisefmtwords
+    \oldnameref*{#1}%
+    \endgroup
+  }%
+  \newcommand\ucnameref@nostar[1]{%
+    \begingroup
+    \MFUhyphentrue
+    \let\My@Macro=\ecapitalisefmtwords
+    \oldnameref{#1}%
+    \endgroup
+  }%
+  \DeclareRobustCommand\lcnameref{%
+    \@ifstar\lcnameref@star\lcnameref@nostar
+  }%
+  \newcommand\lcnameref@star[1]{%
+    \begingroup
+    \let\My@Macro=\MakeLowercase
+    \oldnameref*{#1}%
+    \endgroup
+  }%
+  \newcommand\lcnameref@nostar[1]{%
+    \begingroup
+    \let\My@Macro=\MakeLowercase
+    \oldnameref{#1}%
+    \endgroup
+  }%
+}%
+\else
+    \let\fucnameref\nameref
+    \let\ucnameref\nameref
+    \let\lcnameref\nameref
+\fi
 
-\newcommand{\thmref}[2][]{%
-    \ifthenelse{\equal{#1}{}} {%
-        \nameref{#2} {(\oldautoref{#2})}%
+
+\NewCommandCopy\oldautoref\autoref
+\RenewDocumentCommand{\autoref}{ s O{} m O{} }{%
+    \IfBooleanTF#1{%
+        \ifthenelse{\equal{#2}{}} {%
+            \oldautoref{#3}\ifthenelse{\equal{#4}{}}{}{ (#4)}%
+        }{%
+            \oldautoref{#2-#3}\ifthenelse{\equal{#4}{}}{}{ (#4)}%
+        }%
     }{%
-        \nameref{#1-#2} (\oldautoref{#1-#2}, \hrefpdf{#1})%
+        \ifthenelse{\equal{#2}{}} {%
+            \oldautoref{#3}\ifthenelse{\equal{#4}{}}{}{ (#4)}%
+        }{%
+            \oldautoref{#2-#3}\ifthenelse{\equal{#4}{}}{}{ (#4)} (\hrefpdf{#2}{#3})%
+        }%
     }%
 }
 
-\newcommand{\sideref}[2][]{%
+
+\let\oldnameref\nameref
+% TODO: understand how expanding works
+\renewcommand{\nameref}[2][]{%
     \ifthenelse{\equal{#1}{}} {%
-        \hfill[\oldautoref{#2}]%
+        \oldnameref{#2}%
     }{%
-        \hfill[\oldautoref{#1-#2}, \hrefpdf{#1}]%
+        \oldnameref{#1-#2} (\hrefpdf{#1}{#2})%
     }%
 }
 
-\newcommand{\hrefpdf}[1]{%
-    \expandafter\href{run:\csname #1pdf\endcsname}{#1}%
+\let\oldeqref\eqref
+\renewcommand{\eqref}[2][]{%
+    \ifthenelse{\equal{#1}{}} {%
+        \oldeqref{#2}%
+    }{%
+        \oldeqref{#1-#2} (\hrefpdf{#1}{#2})%
+    }%
+}
+
+% thmref
+\NewDocumentCommand{\thmref}{ s O{} m O{} }{%
+    \IfBooleanTF#1{%
+        \ifthenelse{\equal{#2}{}} {%
+            \fucnameref*{#3} {(\autoref*{#3}[#4])}%
+        }{%
+            \fucnameref*{#2-#3} (\autoref*[#2]{#3}[#4], \hrefpdf{#2}{#3})%
+        }%
+    }{%
+        \ifthenelse{\equal{#2}{}} {%
+            \lcnameref*{#3} {(\autoref*{#3}[#4])}%
+        }{%
+            \lcnameref*{#2-#3} (\autoref*[#2]{#3}[#4], \hrefpdf{#2}{#3})%
+        }%
+    }%
+}
+
+\NewDocumentCommand{\sideref}{ O{} m O{} }{%
+    \ifthenelse{\equal{#1}{}} {%
+        \hfill[\autoref{#2}[#3]]%
+    }{%
+        \hfill[\autoref*[#1]{#2}[#3], \hrefpdf{#1}{#2}]%
+    }%
+}
+
+\newcommand{\hrefpdf}[2]{%
+    \expandafter\href{run:\csname #1pdf\endcsname}{#1}, \pageref*{#1-#2}%
 }
 \newcommand{\externaldoc}[2]{
     \externaldocument[#1-]{#2}

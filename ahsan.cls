@@ -61,6 +61,10 @@
     \PassOptionsToPackage{glossary}{_index}
 }
 
+\DeclareVoidOption{refcap}{
+    \PassOptionsToPackage{refcap}{_ref}
+}
+
 %%% Theme
 \DeclareStringOption[mono]{theme}
 
