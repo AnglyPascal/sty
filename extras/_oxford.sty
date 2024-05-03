@@ -17,42 +17,16 @@
 }
 
 \def\problemSection{
-    % \counterwithin{problemBase}{subsection}
-    % \renewcommand{\theproblemBase}{\arabic{subsection}.\arabic{problemBase}}
-
-    % \renewcommand{\subsubsection}{Section \Alph{subsubsection}}
-
-    % \counterwithin{ProblemBase}{subsection}
-    % \renewcommand{\theProblemBase}{\arabic{subsection}.\arabic{ProblemBase}}
-
-    % \renewcommand{\thesubsection}{\arabic{subsection}.}
-    % \titlecontents{subsection} [1.5em] {} {{\thecontentslabel} \hspace{.5em}} {} {\titlerule*[.5pc]{.}\contentspage}
-
-    % \newpage
-    % \setcounter{section}{0}
-    % \renewcommand{\thesubsection}{\Alph{subsection}}
-    % \renewcommand{\thesection}{ Sheet \arabic{section}}
-    % \counterwithin{problemBase}{subsection}
-    % \renewcommand{\theproblemBase}{\arabic{section}.\Alph{subsection}.\arabic{problemBase}}
-
-    \newpage
     \renewcommand{\thesubsection}{\arabic{subsection}}
 }
 
-
-\def\noproblemSection{
-    \counterwithin{problemBase}{section}
-    \counterwithin{ProblemBase}{section}
-    \makeatletter
-    \renewcommand{\theproblemBase}{\arabic{section}.\arabic{subsection}.\arabic{problemBase}}
-    \renewcommand{\theProblemBase}{\arabic{section}.\arabic{subsection}.\arabic{ProblemBase}}
-    \renewcommand{\thesubsection}{\arabic{section}.\arabic{subsection}.}
-    \titlecontents{subsection} [1.5em] {} {{\thecontentslabel} \hspace{.5em}} {} {\titlerule*[.5pc]{.}\contentspage}
-    \makeatother
+\newcommand{\listproblemname}{\Large List of Problems}
+\newlistof{problem}{prob}{\listproblemname}
+\newcommand{\listproblem}[1]{%
+    \addcontentsline{prob}{problem}{\small \ttfamily #1}
 }
 
 \renewcommand\notestyle{\bfseries}
-\renewcommand\imp[1]{\textbf{#1}}
 
 \newcommand{\fullnotes}{
     \extraAtrue
@@ -64,6 +38,38 @@
 
 % \renewcommand\imp[1]{\textcolor{NordRed}{\textbf{#1}}}
 \renewcommand\imp[1]{\textbf{#1}}
+
+
+%%% todo
+\usepackage{todonotes}
+\setuptodonotes{color=thmBgC, linecolor=gray, size=\tiny}
+
+\newcommand{\listtodoname}{\Large Todos}
+\newlistof{todo}{todo}{\listtodoname}
+\renewcommand{\listoftodos}{\listoftodo}
+
+\NewCommandCopy\oldtodo\todo
+\renewcommand{\todo}[2][]{
+    \oldtodo[nolist, #1]{#2}
+    \addcontentsline{todo}{todo}{\small #2}
+}
+
+\setlength {\marginparwidth }{2cm}
+\newsavebox{\todobox}
+
+\newcommand{\todonote}[2][inNote]% #1 = coordinate id (optional), #2 = note
+{%
+  \marginpar{\savebox\todobox{\todo[inline]{#2}}% measure height
+  \begin{tikzpicture}[remember picture, overlay]
+    \coordinate (#1) at (0pt,0.5\ht\todobox);
+  \end{tikzpicture}\usebox\todobox}%
+}
+
+\newcommand{\todomark}[1][inNote]% #1 = coordinate id (optional)
+{\begin{tikzpicture}[remember picture, overlay]
+  \draw[gray,thick] (#1) -- ++(-0.5\marginparsep,0)
+    |- (0pt,\lineskip-\dp\strutbox);
+\end{tikzpicture}}
 
 
 %%% past papers
