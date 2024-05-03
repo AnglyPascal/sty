@@ -4,6 +4,11 @@
 \newif\ifextraB\extraBfalse
 \newif\ifextraC\extraCfalse
 
+%\fi\fi % to fix highlighting in nvim
+
+\newif\if@oxford@papers@is\@oxford@papers@isfalse
+\DeclareOption{pastpapers}{\@oxford@papers@istrue}
+
 \ProcessOptions\relax
 
 \newcommand{\probsection}[1]{
