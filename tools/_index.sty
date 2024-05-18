@@ -81,9 +81,10 @@
 \fi
 
 \if@index@article@is
-    \newcommand{\indef}[1]{\index[def]{\Sectionname!\MakeUppercase #1}\textbf{#1}}
+    \newcommand{\indef}[1]{\index[def]{\Sectionname!\MakeUppercase #1}\emph{#1}}
 \else
-    \newcommand{\indef}[1]{\index[def]{\Chaptername!\Sectionname!\MakeUppercase #1}\textbf{#1}}
+    \newcommand{\indef}[1]{\index[def]{\Chaptername!\Sectionname!\MakeUppercase
+    #1}\emph{#1}}
 \fi
 
 \if@index@article@is

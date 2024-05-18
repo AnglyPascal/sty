@@ -1,5 +1,6 @@
 \ProvidesPackage{_oxford}
 
+\newif\ifsometodo\sometodofalse
 \newif\ifextraA\extraAfalse
 \newif\ifextraB\extraBfalse
 \newif\ifextraC\extraCfalse
@@ -26,7 +27,7 @@
     \addcontentsline{prob}{problem}{\small \ttfamily #1}
 }
 
-\renewcommand\notestyle{\bfseries}
+\renewcommand\notestyle{\em}
 
 \newcommand{\fullnotes}{
     \extraAtrue
@@ -46,13 +47,17 @@
 
 \newcommand{\listtodoname}{\Large Todos}
 \newlistof{todo}{todo}{\listtodoname}
-\renewcommand{\listoftodos}{\listoftodo}
 
 \NewCommandCopy\oldtodo\todo
 \renewcommand{\todo}[2][]{
+    \sometodotrue
     \oldtodo[nolist, #1]{#2}
     \addcontentsline{todo}{todo}{\small #2}
 }
+
+%%% conditionally insert list of todos
+\AtEndDocument{\ifsometodo\label{some:todo:was:used}\fi} 
+\renewcommand{\listoftodos}{\@ifundefined{r@some:todo:was:used}{}{\listoftodo}}%
 
 \setlength {\marginparwidth }{2cm}
 \newsavebox{\todobox}
@@ -70,6 +75,23 @@
   \draw[gray,thick] (#1) -- ++(-0.5\marginparsep,0)
     |- (0pt,\lineskip-\dp\strutbox);
 \end{tikzpicture}}
+
+
+
+\newcommand{\listnotesname}{\Large Important Notes}
+\newlistof{notes}{note}{\listnotesname}
+\newcommand{\listnote}[1]{%
+    \addcontentsline{note}{notes}{\small #1}
+}
+
+\NewDocumentCommand{\sidenote}{ s m }{%
+    \IfBooleanTF#1{%
+        \listnote{#2}
+        \oldtodo[nolist, noline]{#2}
+    }{%
+        \oldtodo[nolist, noline]{#2}
+    }%
+}
 
 
 %%% past papers

@@ -68,9 +68,16 @@
 
 %%%% make math bold inside bf
 \AddToHook{cmd/bfseries/after}{\boldmath}
+% \AddToHook{cmd/itshape/after}{\boldmath}
 \AddToHook{cmd/normalfont/after}{\unboldmath}
 
 
 % %%%% clever quotes
 % \usepackage [autostyle, english = british, maxlevel=4]{csquotes}
 % \MakeOuterQuote{"}
+
+\NewCommandCopy\oldemph\emph
+\renewcommand{\emph}[1]{\textbf{\oldemph{#1}}}
+
+\NewCommandCopy\oldem\em
+\renewcommand{\em}{\bfseries\oldem}

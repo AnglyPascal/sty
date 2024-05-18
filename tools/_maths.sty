@@ -6,6 +6,7 @@
 \usepackage{nicefrac}
 \usepackage{booktabs}
 \usepackage{multicol}
+\usepackage{mathtools}
 %%%%%%%%%%%%%%%%%%%%%%%
 
 
@@ -94,6 +95,7 @@
 \newcommand{\injto}{\hookrightarrow}
 \newcommand{\On}{\mathrm{On}} % ordinals
 \DeclareMathOperator{\img}{Im} % Image
+\DeclareMathOperator{\dist}{dist} % Image
 \newcommand{\nullop}{\operatorname{null}} % null
 \DeclareMathOperator{\coker}{coker} % Cokernel
 \DeclareMathOperator{\Coker}{Coker} % Cokernel
@@ -164,5 +166,4 @@
 
 \def\suml{\sum\limits}
 
-\NewCommandCopy\oldemph\emph
-\renewcommand{\emph}[1]{\textbf{\oldemph{#1}}}
+\newcommand{\wto}{\rightharpoonup}
