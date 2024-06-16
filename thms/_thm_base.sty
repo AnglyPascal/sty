@@ -15,7 +15,7 @@
 
 \ifcsname inthm\endcsname%
 \else%
-    \newcommand{\inthm}[1]{\textbf{#1}}
+    \newcommand{\inthm}[1]{\emph{#1}}
 \fi%
 
 \usepackage{xifthen}
@@ -105,6 +105,13 @@
 \declaretheorem[style=emptythmstyle, name=, numbered=no]{emptythm}
 \tcolorboxenvironment{emptythm}{ styleTabShaded=1.1 }
 
+\usepackage{empheq}
+\tcbset{highlight math style={
+    colback=thmBgC, colframe=black, 
+    left=3pt, right=3pt, top=3pt, bottom=3pt,
+    boxrule=.9\borderwidth,
+}}
+
 \newcommand{\impeq}[1]{
     \tcboxmath[
     colback=thmBgC, colframe=thmBgC, 
@@ -115,7 +122,7 @@
     \tcboxmath[
     colback=thmBgC, colframe=black, 
     left=3pt, right=3pt, top=3pt, bottom=3pt,
-    boxrule=\borderwidth,
+    boxrule=.9\borderwidth,
     ]{#1}
 }
 \newcommand{\Boxed}[1]{
@@ -127,6 +134,7 @@
 }
 \let\oldboxed\boxed
 \renewcommand\boxed[1]{\Boxed{#1}}
+
 
 \theoremstyle{solnstyle}
 
