@@ -19,6 +19,10 @@
 \def\codefontsize{\small}
 \def\backgroundstyle{}
 \def\codestyle{\ttfamily}
+\def\resetstyle{\normalfont\codestyle}
+
+\def\specialvalstyle{\bfseries\color{defC}}
+\def\stdlibstyle{\bfseries\color{defC}}
 
 \lstdefinestyle{numbers}{
     numbers=left,
@@ -155,7 +159,8 @@
         % {`}{{'}}{1}
         {;}{{\textcolor{fgC!60!pageC}{;}}}{1}
         {=>}{{\textcolor{fgC!60!pageC}{=>}}}{2}
-        {||}{{\textbf{||}}}{2}
+  \renewcommand{\familydefault}{\sfdefault}
+       {||}{{\textbf{||}}}{2}
         {\{}{{\textcolor{thmC}{\{}}}{1}
         {\}}{{\textcolor{thmC}{\}}}}{1},
 }
@@ -206,9 +211,7 @@
     language=caml,
     style=numbers,
     style=fonts,
-    backgroundcolor=\color{defBgC!50!white},
-    frame=tb,
-    identifierstyle=\identifierstyle,
+    style=colors,
     tabsize=2,
     basewidth={0.6em,0.4em},
     stringstyle=\stringstyle,
@@ -384,6 +387,10 @@
     literate=,
 }
 
+\lstdefinestyle{myassembly}{
+    style=myarm,
+}
+
 \lstdefinestyle{mypascal}{
     language=Pascal,
     style=numbers,
@@ -455,6 +462,31 @@
     morecomment=[s][\color{NordViolet}]{\{\{}{\}\}} 
 }
 
+\lstdefinestyle{mycpp}{
+    language=C++,
+    style=numbers,
+    style=fonts,
+    style=colors,
+    morekeywords={
+        constexpr, noexcept, decltype, alignas, alignof, declval, 
+        forward, move, 
+    },
+    emph={[2]
+        % std, 
+        vector, unordered_map, unordered_set, priority_queue, deque,
+        shared_ptr, unique_ptr, weak_ptr, thread,
+        tuple, integral_constant, is_same, derived_from, conditional,
+        enable_if, true_type, false_type, 
+    },
+    emphstyle={[2]\stdlibstyle},
+    emph={[3]nullptr, NULL},
+    emphstyle={[3]\specialvalstyle},
+    emph={[4]
+        Args, T, byte, 
+        uint8_t, uint16_t, uint32_t, uint64_t, size_t,  
+    },
+    emphstyle={[4]\typestyle},
+}
 
 \lstdefinestyle{mypy}{
     language=Python,

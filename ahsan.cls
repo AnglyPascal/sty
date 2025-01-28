@@ -37,7 +37,7 @@
 \DeclareStringOption[169]{aspectratio}
 
 \def\ahsan@fonts@en{yes}
-\DeclareVoidOption{no fonts}{\renewcommand\ahsan@fonts@en{no}}
+\DeclareVoidOption{nofonts}{\renewcommand\ahsan@fonts@en{no}}
 \def\ahsan@font@shape{serif}
 \DeclareVoidOption{sans}{\renewcommand\ahsan@font@shape{sans}}
 \DeclareVoidOption{mono}{\renewcommand\ahsan@font@shape{mono}}
@@ -50,6 +50,10 @@
 \DeclareVoidOption{kindle}{
     \PassOptionsToPackage{kindle}{_article}
     \renewcommand\ahsan@font@size{10pt}
+}
+
+\DeclareVoidOption{handout}{
+    \PassOptionsToPackage{handout}{_article}
 }
 
 %%% Page size

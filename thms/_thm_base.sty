@@ -87,11 +87,24 @@
 \definetheorem{exercise}{example}{thmcntr}{}
 \definetheorem{remark}{example}{thmcntr}{}
 
+\definetheorem{notation}{example}{thmcntr}{}
+\definetheorem{fact}{example}{thmcntr}{}
 
-\newcounter{probcntr}[subsection]
-\counterwithin{probcntr}{subsection}
 
+\newcounter{probcntr}[section]
 \definetheorem{problem}{example}{probcntr}{}
+
+\newcommand{\probcntrWithin}[1]{
+    \counterwithin{problemBase}{#1}
+    \counterwithin{problem*Base}{#1}
+    \counterwithin{ProblemBase}{#1}
+}
+
+\newcommand{\probcntrWithout}[1]{
+    \counterwithout{problemBase}{#1}
+    \counterwithout{problem*Base}{#1}
+    \counterwithout{ProblemBase}{#1}
+}
 
 
 \let\proof\undefined

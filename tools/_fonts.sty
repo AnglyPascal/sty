@@ -41,8 +41,7 @@
         \setmainfont{Yanone Kaffeesatz}
         \setsansfont{Andika New Basic}
     \else
-        \usepackage[nosumlimits]{kpfonts}
-        \usepackage{bm}
+        \usepackage[]{kpfonts}
     \fi
 
     % \setmonofont{Share Tech Mono} [Scale=MatchUppercase, Scale=.9]
@@ -65,6 +64,8 @@
 \usepackage{xpatch}
 \xapptocmd{\ttfamily}{\mathversion{typewriter}}{}{}
 
+
+\usepackage{bm}
 
 %%%% make math bold inside bf
 \AddToHook{cmd/bfseries/after}{\boldmath}

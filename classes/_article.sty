@@ -3,33 +3,42 @@
 \newif\if@kindle@is \@kindle@isfalse
 \DeclareOption{kindle} {\@kindle@istrue}
 
+\newif\if@handout@is \@handout@isfalse
+\DeclareOption{handout} {\@handout@istrue}
+
 \ProcessOptions\relax
 
-\usepackage[nobottomtitles]{titlesec}
+\if@handout@is
+    \setlength\parindent{0pt}
+    \setlength\parskip{8pt}
 
-\titleformat{\section}
-    {\color{thmC}\normalfont\Large\bfseries}
-    {\S \thesection}
-    {.5em}
-    {}
+\else
+    \usepackage[nobottomtitles]{titlesec}
 
-\titleformat{\subsection}
-    {\color{thmC!90!defC}\normalfont\large\bfseries}
-    {\thesubsection}
-    {.5em}
-    {}
+    \titleformat{\section}
+        {\color{thmC}\normalfont\Large\bfseries}
+        {\S \thesection}
+        {.5em}
+        {}
 
-\titlespacing*{\section}{0pt}{6ex plus 1ex minus 1ex}{3ex plus .2ex}
-\titlespacing*{\subsection}{0pt}{4ex plus 1ex minus 1ex}{1ex plus .2ex}
+    \titleformat{\subsection}
+        {\color{thmC!90!defC}\normalfont\large\bfseries}
+        {\thesubsection}
+        {.5em}
+        {}
+
+    \titlespacing*{\section}{0pt}{6ex plus 1ex minus 1ex}{3ex plus .2ex}
+    \titlespacing*{\subsection}{0pt}{4ex plus 1ex minus 1ex}{1ex plus .2ex}
+
+    \setlength\parindent{0pt}
+    \setlength\parskip{10pt}
+\fi
 
 \if@kindle@is
     \usepackage[a6paper, landscape, margin=0pt]{geometry}
 \else
     \usepackage[a4paper, margin=1in]{geometry}
 \fi
-
-\setlength\parindent{0pt}
-\setlength\parskip{10pt}
 
 
 \def\maketitle{%

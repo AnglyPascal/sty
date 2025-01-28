@@ -95,11 +95,13 @@
 \newcommand{\injto}{\hookrightarrow}
 \newcommand{\On}{\mathrm{On}} % ordinals
 \DeclareMathOperator{\img}{Im} % Image
+\DeclareMathOperator{\Ran}{Ran} % Image
 \DeclareMathOperator{\dist}{dist} % Image
 \newcommand{\nullop}{\operatorname{null}} % null
 \DeclareMathOperator{\coker}{coker} % Cokernel
 \DeclareMathOperator{\Coker}{Coker} % Cokernel
 \DeclareMathOperator{\Ker}{Ker} % Kernel
+\DeclareMathOperator{\ind}{ind} % index
 \DeclareMathOperator{\Orb}{Orb} % Orbit
 \DeclareMathOperator{\Stab}{Stab} % Orbit
 \DeclareMathOperator{\rank}{rank}
@@ -148,7 +150,8 @@
 \renewcommand{\phi}{\varphi}
 
 \let\oldemptyset\emptyset
-\let\emptyset\varnothing
+% \def\emptyset\varnothing
+\renewcommand{\emptyset}{\varnothing}
 
 \let\oldepsilon\epsilon
 \let\epsilon\varepsilon

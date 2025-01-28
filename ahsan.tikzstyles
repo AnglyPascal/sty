@@ -5,6 +5,8 @@
 
 % Node styles
 \tikzstyle{vertex}=[fill=none, draw=black, shape=circle]
+\tikzstyle{zspider}=[fill=white, draw=black, shape=circle]
+\tikzstyle{xspider}=[fill={rgb,255: red,27; green,27; blue,27}, draw=black, shape=circle]
 
 % Edge styles
 \tikzstyle{new edge style 0}=[-]
