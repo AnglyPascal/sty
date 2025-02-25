@@ -173,3 +173,6 @@
 
 \newcommand{\dts}{\let\displaystyle\textstyle}
 \newcommand{\ntag}[1]{\phantom{\text{\textit{#1}}}\tag{\textit{#1}}}
+
+\newenvironment{talign} {\let\displaystyle\textstyle\align} {\endalign}
+\newenvironment{talign*} {\let\displaystyle\textstyle\csname align*\endcsname} {\endalign}

@@ -7,9 +7,6 @@
 
 \ProcessOptions\relax
 
-\usepackage[english]{babel}
-\usepackage{metalogo}
-
 \AtBeginSection[]{ 
     \begin{frame}[c,noframenumbering,plain]
         \tableofcontents[
@@ -38,3 +35,8 @@
 \setlength\parskip{\f@size pt}
 
 \setbeamersize{description width=.1em}
+
+\newcommand{\sectionautorefname}{}
+\newcommand{\subsectionautorefname}{}
+\newcommand{\subsubsectionautorefname}{}
+\newcommand*{\autoref}[1]{\nameref{#1}}

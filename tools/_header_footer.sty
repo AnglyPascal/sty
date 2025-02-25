@@ -12,21 +12,29 @@
 \if@hdr@fancy@is
     \usepackage{fancyhdr}
 
-    % \makepagestyle{plain}
-    % % \makeevenhead{plain}{\rightmark\leftmark}{}{}
-    % \makeoddhead{plain}
-    % {\fontsize{10}{12} \selectfont \thepage}
-    % {}
-    % {\fontsize{10}{12} \selectfont \leftmark}
+    \makepagestyle{plain}
+    % \makeevenhead{plain}{\rightmark\leftmark}{}{}
+    \makeoddhead{plain}
+    {\small\thepage}
+    {}
+    {\small\leftmark}
 
-    % \makeevenhead{plain}
-    % {\fontsize{10}{12} \selectfont \rightmark}
-    % {}
-    % {\fontsize{10}{12} \selectfont \thepage}
+    \makeevenhead{plain}
+    {\small\rightmark}
+    {}
+    {\small\thepage}
 
-    % \renewcommand*{\sectionmark}[1]{\markboth{#1}{}}
-    % \renewcommand*{\subsectionmark}[1]{\markright{#1}}
-    % \pagestyle{plain}
+    \renewcommand*{\sectionmark}[1]{\markboth{#1}{}}
+    \renewcommand*{\subsectionmark}[1]{\markright{#1}}
+    \pagestyle{plain}
+
+
+    \fancyheadoffset[loh,leh]{8mm}
+    \fancyhf{}
+    \fancyhf[loh,reh]{\leftmark}
+    \fancyhf[leh,roh]{\rightmark}
+    \fancyhf[cf]{\thepage}
+    % \renewcommand{\headrulewidth}{0pt}
 \fi
 
 

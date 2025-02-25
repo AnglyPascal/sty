@@ -72,11 +72,15 @@
     \end{tikzpicture}\usebox\todobox}%
 }
 
+% \let\todomark\undefined
 \newcommand{\todomark}[1][inNote]% #1 = coordinate id (optional)
-{\begin{tikzpicture}[remember picture, overlay]
-  \draw[gray,thick] (#1) -- ++(-0.5\marginparsep,0)
-    |- (0pt,\lineskip-\dp\strutbox);
-\end{tikzpicture}}
+{
+    \sometodotrue
+    \begin{tikzpicture}[remember picture, overlay]
+        \draw[gray,thick] (#1) -- ++(-0.5\marginparsep,0)
+        |- (0pt,\lineskip-\dp\strutbox);
+    \end{tikzpicture}
+}
 
 
 

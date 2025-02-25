@@ -1,40 +1,44 @@
-\ProvidesPackage{_article}
+\ProvidesPackage{_memoir}
 
 \ProcessOptions\relax
 
 \usepackage{titlesec}
+ 
+\DisemulatePackage{setspace}
+
+% \titleformat{\chapter}[frame]
+%     {\normalfont}
+%     {\filright\small\enspace CHAPTER\enspace
+%         \bfseries \LARGE\thechapter\enspace}
+%     {10pt}
+%     {\Huge\bfseries\filcenter}[\thispagestyle{empty}\newpage]
 
 
-\titleformat{\chapter}[frame]
-    {\normalfont}
-    {\filright\small\enspace CHAPTER\enspace
-        \bfseries \LARGE\thechapter\enspace}
-    {10pt}
-    {\Huge\bfseries\filcenter}[\thispagestyle{empty}\newpage]
+% \titleformat{\section}
+%     {\color{titleC}\normalfont\Large\bfseries}
+%     {\S \thesection}
+%     {1em}
+%     {}
 
+% \titleformat{\subsection}
+%     {\color{titleC}\normalfont\large\bfseries}
+%     {\thesubsection}
+%     {1em}
+%     {}
 
-\titleformat{\section}
-    {\color{titleC}\normalfont\Large\bfseries}
-    {\S \thesection}
-    {1em}
-    {}
+% \titlespacing*{\chapter}{0pt}{2em plus 1em minus .2em}{10em plus 2em}
+% \titlespacing*{\section}{0pt}{2em plus 1em minus .2em}{2em plus .2em}
+% \titlespacing*{\subsection}{0pt}{1em plus .5em minus .2em}{1em plus .2em}
 
-\titleformat{\subsection}
-    {\color{titleC}\normalfont\large\bfseries}
-    {\thesubsection}
-    {1em}
-    {}
-
-\titlespacing*{\chapter}{0pt}{2em plus 1em minus .2em}{10em plus 2em}
-\titlespacing*{\section}{0pt}{2em plus 1em minus .2em}{2em plus .2em}
-\titlespacing*{\subsection}{0pt}{1em plus .5em minus .2em}{1em plus .2em}
-
-\setlrmarginsandblock{5em}{5em}{*}
-\setulmarginsandblock{8em}{5em}{*}
+\setlrmarginsandblock{7em}{7em}{*}
+\setulmarginsandblock{9em}{9em}{*}
 \checkandfixthelayout
 
+\setlength\parindent{0pt}
+\setlength\parskip{10pt}
 
-\newcommand{\titlePage}{\maketitle\vfill \thispagestyle{empty}\newpage}
+\setsecnumdepth{subsection}
+
 \newcommand{\toc}{
     \begingroup
         {

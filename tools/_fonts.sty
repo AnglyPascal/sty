@@ -10,6 +10,7 @@
 
 \newif\if@fonts@beamer@is
 \DeclareOption{article}{\@fonts@beamer@isfalse}
+\DeclareOption{memoir}{\@fonts@beamer@isfalse}
 \DeclareOption{report}{\@fonts@beamer@isfalse}
 \DeclareOption{beamer}{\@fonts@beamer@istrue\@fonts@sans@istrue}
 
@@ -38,10 +39,13 @@
     % \DeclareMathAlphabet{\mathcal}{OMS}{cmsy}{m}{n}
 
     \if@fonts@beamer@is
-        \setmainfont{Yanone Kaffeesatz}
+        % \setmainfont{Yanone Kaffeesatz}
+        \setmainfont{RobotoCondensed}
         \setsansfont{Andika New Basic}
     \else
         \usepackage[]{kpfonts}
+        % kpfont \int is ugly, replace it
+        \setmathfont{TeX Gyre Pagella Math}[range=\int]
     \fi
 
     % \setmonofont{Share Tech Mono} [Scale=MatchUppercase, Scale=.9]

@@ -3,9 +3,9 @@
 
 \RequirePackage{kvoptions}
 
-\newif \if@ahsan@article@is
-\newif \if@ahsan@beamer@is
-\newif \if@ahsan@memoir@is
+\newif \if@ahsan@article@is \@ahsan@article@isfalse
+\newif \if@ahsan@beamer@is \@ahsan@beamer@isfalse
+\newif \if@ahsan@memoir@is \@ahsan@memoir@isfalse
 
 \newif \if@ahsan@oxford@is \@ahsan@oxford@isfalse
 
@@ -22,6 +22,7 @@
     \@ahsan@beamer@istrue
     \renewcommand\ahsan@class@name{beamer}
     \PassOptionsToClass{notheorems}{beamer}
+    \PassOptionsToClass{noamsthm}{beamer}
 }
 \DeclareVoidOption{memoir}{
     \@ahsan@article@isfalse
@@ -103,7 +104,7 @@
 
 \ProcessKeyvalOptions* %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\if@ahsan@beamer@is  \PassOptionsToClass{aspectratio=\ahsan@aspectratio}{beamer} \fi
+\if@ahsan@beamer@is  \PassOptionsToClass{hyperref={implicit=true}, aspectratio=\ahsan@aspectratio}{beamer} \fi
 
 %%% Load the class
 \LoadClass[\ahsan@font@size, \ahsan@page@size]{\ahsan@class@name}
