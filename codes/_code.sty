@@ -639,8 +639,8 @@
     \counterwithin{lstlisting}{section}
     \setcounter{lstlisting}{\value{theoremBase}}
     \renewcommand\lstlistingname{Algorithm}
-    \renewcommand{\lstlistlistingname}{List of \lstlistingname s}
-    \lstset{style=myalgo, caption={[#1]\textbf{#1}}, label={#2}}
+    % \lstset{style=myalgo, caption={[\texttt{#1}]\textbf{#1}}, label={\normalfont{#1}}}
+    \lstset{style=myalgo, caption={[\texttt{#1}]\textbf{#1}}}
 }{\addtocounter{theoremBase}{1}}
 
 \lstnewenvironment{scala}[1][]
