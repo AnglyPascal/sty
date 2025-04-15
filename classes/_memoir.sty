@@ -37,7 +37,12 @@
 \setlength\parindent{0pt}
 \setlength\parskip{10pt}
 
-\setsecnumdepth{subsection}
+\titlespacing{\paragraph}{%
+  0pt}{% left margin
+  0.3\baselineskip}{% space before (vertical)
+  1em}% space after (horizontal)
+
+\setsecnumdepth{subsubsection}
 
 \newcommand{\toc}{
     \begingroup

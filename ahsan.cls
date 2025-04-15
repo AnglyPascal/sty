@@ -30,6 +30,10 @@
     \renewcommand\ahsan@class@name{memoir}
 }
 
+% \DeclareVoidOption{handout}{
+%     \PassOptionsToClass{handout}{beamer}
+% }
+
 \DeclareVoidOption{pastpapers}{
     \PassOptionsToPackage{pastpapers}{_oxford}
 }
@@ -47,15 +51,17 @@
 \DeclareVoidOption{10pt}{\renewcommand\ahsan@font@size{10pt}}
 \DeclareVoidOption{11pt}{\renewcommand\ahsan@font@size{11pt}}
 \DeclareVoidOption{12pt}{\renewcommand\ahsan@font@size{12pt}}
+\DeclareVoidOption{14pt}{\renewcommand\ahsan@font@size{14pt}}
+\DeclareVoidOption{16pt}{\renewcommand\ahsan@font@size{16pt}}
 
 \DeclareVoidOption{kindle}{
     \PassOptionsToPackage{kindle}{_article}
     \renewcommand\ahsan@font@size{10pt}
 }
 
-\DeclareVoidOption{handout}{
-    \PassOptionsToPackage{handout}{_article}
-}
+% \DeclareVoidOption{handout}{
+%     \PassOptionsToPackage{handout}{_article}
+% }
 
 %%% Page size
 \def\ahsan@page@size{a4paper}
@@ -107,7 +113,11 @@
 \if@ahsan@beamer@is  \PassOptionsToClass{hyperref={implicit=true}, aspectratio=\ahsan@aspectratio}{beamer} \fi
 
 %%% Load the class
+\if@ahsan@article@is
+\LoadClass[\ahsan@font@size, \ahsan@page@size]{extarticle}
+\else 
 \LoadClass[\ahsan@font@size, \ahsan@page@size]{\ahsan@class@name}
+\fi
 
 
 %%% Load class specific configs
@@ -115,6 +125,8 @@
 \if@ahsan@memoir@is  \RequirePackage{_memoir} \fi
 \if@ahsan@beamer@is  \RequirePackage[\ahsan@theme]{_beamer} \fi
 
+%%% load maths packages
+\RequirePackage[]{_maths}
 
 %%% load fonts style
 \RequirePackage[
@@ -122,10 +134,6 @@
     \ahsan@font@shape, 
     \ahsan@class@name
 ]{_fonts}
-
-
-%%% load maths packages
-\RequirePackage[]{_maths}
 
 %%% Load theme
 \RequirePackage[\ahsan@theme]{_theme}

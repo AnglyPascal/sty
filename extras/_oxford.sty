@@ -40,49 +40,30 @@
 % \renewcommand\imp[1]{\textcolor{NordRed}{\textbf{#1}}}
 \renewcommand\imp[1]{\textbf{#1}}
 
-
 %%% todo
-\usepackage{todonotes}
-\setuptodonotes{color=thmBgC, linecolor=gray, size=\tiny}
-
-\newcommand{\listtodoname}{\Large Todos}
-\newlistof{todo}{todo}{\listtodoname}
+\let\ul\relax
+\let\st\relax
+\usepackage[
+    % additionalMargin=20pt, 
+    textsize=tiny, 
+    color=thmBgC,
+    linecolor=gray, 
+    leaderwidth=.7pt, 
+    distanceNotesPageBorder=.3cm, 
+    distanceNotesText=0cm, 
+    minNoteWidth=1cm
+]{luatodonotes}
 
 \NewCommandCopy\oldtodo\todo
 \renewcommand{\todo}[2][]{
     \sometodotrue
-    \oldtodo[nolist, #1]{#2}
-    \addcontentsline{todo}{todo}{\small #2}
+    \oldtodo[#1]{#2}
 }
 
 %%% conditionally insert list of todos
 \AtEndDocument{\ifsometodo\label{some:todo:was:used}\fi} 
-\renewcommand{\listoftodos}{\@ifundefined{r@some:todo:was:used}{}{\listoftodo}}%
-
-\setlength {\marginparwidth }{2cm}
-\newsavebox{\todobox}
-
-\newcommand{\todonote}[2][inNote]% #1 = coordinate id (optional), #2 = note
-{%
-    \sometodotrue
-    \addcontentsline{todo}{todo}{\small #2}
-    \marginpar{\savebox\todobox{\oldtodo[inline]{#2}}% measure height
-        \begin{tikzpicture}[remember picture, overlay]
-            \coordinate (#1) at (0pt,0.5\ht\todobox);
-    \end{tikzpicture}\usebox\todobox}%
-}
-
-% \let\todomark\undefined
-\newcommand{\todomark}[1][inNote]% #1 = coordinate id (optional)
-{
-    \sometodotrue
-    \begin{tikzpicture}[remember picture, overlay]
-        \draw[gray,thick] (#1) -- ++(-0.5\marginparsep,0)
-        |- (0pt,\lineskip-\dp\strutbox);
-    \end{tikzpicture}
-}
-
-
+\renewcommand{\listoftodos}{\@ifundefined{r@some:todo:was:used}{}{\listoftodos}}%
+%%% FIXME doesn't work yet, look into it later
 
 \newcommand{\listnotesname}{\Large Important Notes}
 \newlistof{notes}{note}{\listnotesname}

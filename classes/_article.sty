@@ -34,6 +34,12 @@
 
     \setlength\parindent{0pt}
     \setlength\parskip{10pt}
+
+    \renewcommand{\paragraph}{%
+      \@startsection{paragraph}{4}%
+      {\z@}{1.25ex \@plus 1ex \@minus .2ex}{-1em}%
+      {\normalfont\normalsize\bfseries\HUGE}%
+    }
 \fi
 
 \if@kindle@is

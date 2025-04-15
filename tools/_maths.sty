@@ -6,9 +6,14 @@
 \usepackage{nicefrac}
 \usepackage{booktabs}
 \usepackage{multicol}
-\usepackage{mathtools}
 %%%%%%%%%%%%%%%%%%%%%%%
 
+\usepackage{mathtools}
+\let\underbrace\LaTeXunderbrace
+\let\overbrace\LaTeXoverbrace
+
+\let\underbracket\Uunderbracket
+\let\overbracket\Uoverbracket
 
 \renewcommand{\tfrac}{\genfrac{}{}{}1}
 
@@ -46,7 +51,7 @@
 \newcommand{\ul}{\underline}
 \newcommand{\wt}{\widetilde}
 \newcommand{\wh}{\widehat}
-\newcommand{\dash}{\textunderscore}
+% \newcommand{\dash}{\textunderscore}
 
 \newcommand{\cosec}{\mathrm{cosec}\ }
 

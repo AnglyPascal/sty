@@ -21,9 +21,31 @@
 \ProcessOptions\relax
 
 \usepackage{fontspec}
-\usepackage[OT1]{fontenc}
 
 \if@fonts@is
+    \if@fonts@beamer@is
+        \usefonttheme{serif}
+
+        \setbeamerfont{title}{family=\fontspec{Andika New Basic}}
+        \setbeamerfont{subtitle}{family=\fontspec{Andika New Basic}}
+        \setbeamerfont{frametitle}{family=\fontspec{Andika New Basic}}
+
+        %%% \setmainfont{Yanone Kaffeesatz}
+        %%% \setsansfont{Andika New Basic}
+    \else 
+    \fi
+ 
+    \usepackage[partialup]{kpfonts}
+
+    \usepackage{pgffor}
+    % kpfont \int is ugly, replace it
+    % sources: https://tex.stackexchange.com/questions/425098/
+    \setmathfont{Erewhon-Math}[range={\sum, \prod, \bigcap, \bigcup}]
+    \setmathfont{TeX Gyre Pagella Math}[range={\int}]
+
+    % \setmonofont{Share Tech Mono} [Scale=MatchUppercase, Scale=.9]
+    \setmonofont{Courier Prime} [Scale=MatchLowercase]
+
     \newfontfamily\Share[
         Ligatures=TeX, 
         Scale=MatchUppercase, 
@@ -35,21 +57,7 @@
         Scale=.9
     ]{Titillium Web}
 
-    % \usepackage{mathptmx} 
     % \DeclareMathAlphabet{\mathcal}{OMS}{cmsy}{m}{n}
-
-    \if@fonts@beamer@is
-        % \setmainfont{Yanone Kaffeesatz}
-        \setmainfont{RobotoCondensed}
-        \setsansfont{Andika New Basic}
-    \else
-        \usepackage[]{kpfonts}
-        % kpfont \int is ugly, replace it
-        \setmathfont{TeX Gyre Pagella Math}[range=\int]
-    \fi
-
-    % \setmonofont{Share Tech Mono} [Scale=MatchUppercase, Scale=.9]
-    \setmonofont{Courier Prime} [Scale=MatchLowercase]
 \fi
 
 \if@fonts@sans@is  \renewcommand{\familydefault}{\sfdefault} \fi
@@ -57,17 +65,16 @@
 \if@fonts@mono@is  \renewcommand{\familydefault}{\ttdefault} \fi
 
 
-%%%% make math tt inside tt
-% https://tex.stackexchange.com/questions/119879/math-symbols-in-tt-font
-\usepackage[subdued,defaultmathsizes]{mathastext}
-\MTnonlettersobeymathxx     % math alphabets will act on (, ), [, ], etc...
-\MTexplicitbracesobeymathxx % math alphabets will act on \{ and \}
-\MTfamily{cmtt}             % we will declare a math version using tt font
-\Mathastext[typewriter]     % the math version is called typewriter
+% %%%% make math tt inside tt
+% % https://tex.stackexchange.com/questions/119879/math-symbols-in-tt-font
+% \usepackage[subdued,defaultmathsizes]{mathastext}
+% \MTnonlettersobeymathxx     % math alphabets will act on (, ), [, ], etc...
+% \MTexplicitbracesobeymathxx % math alphabets will act on \{ and \}
+% \MTfamily{cmtt}             % we will declare a math version using tt font
+% \Mathastext[typewriter]     % the math version is called typewriter
 
-\usepackage{xpatch}
-\xapptocmd{\ttfamily}{\mathversion{typewriter}}{}{}
-
+% \usepackage{xpatch}
+% \xapptocmd{\ttfamily}{\mathversion{typewriter}}{}{}
 
 \usepackage{bm}
 

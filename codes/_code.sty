@@ -2,6 +2,7 @@
 \ProvidesPackage{_code}
 
 \RequirePackage{listings, relsize}
+
 \RequirePackage{xifthen}
 
 \def\keywordstyle{\bfseries\color{thmC}}
@@ -355,7 +356,7 @@
     style=numbers,
     style=fonts,
     style=colors,
-    frame=,
+    % frame=,
     backgroundcolor=\color{pageC},
     identifierstyle=\identifierstyle,
     mathescape=true,
@@ -368,6 +369,8 @@
         moveq, movne, movgt, movge, movlt, movle,
         beq, bne, bgt, bge, blt, ble,
         movw, movt, asl, ret, csel,
+        push, pop, mrs, msr, 
+        bx, ble, beq, bne, bz, isb,
         % simd
         vadd.i32, sadd8, 
     },
@@ -382,8 +385,11 @@
         d0, d1, d, q,
         q0, q1, q2, q3, 
         v1.4s, v2.4s, v3.4s,
+        msp, 
     },
     emphstyle={[3]\regstyle},
+    emph={[4] global, thumb_func, endm, macro},
+    emphstyle={[4]\bfseries\commentstyle},
     literate=,
 }
 
@@ -445,6 +451,14 @@
     morecomment=[l]{\#},
 }
 
+\lstdefinestyle{mytxt}{
+    % style=numbers,
+    style=fonts,
+    % style=colors,
+    mathescape=true,
+    morecomment=[l]{\#},
+}
+
 \lstdefinestyle{myyml}{
     style=fonts,
     style=colors,
@@ -471,6 +485,9 @@
         constexpr, noexcept, decltype, alignas, alignof, declval, 
         forward, move, 
     },
+    emph={[1]
+    },
+    emphstyle={[1]\stdlibstyle},
     emph={[2]
         % std, 
         vector, unordered_map, unordered_set, priority_queue, deque,
@@ -486,6 +503,7 @@
         uint8_t, uint16_t, uint32_t, uint64_t, size_t,  
     },
     emphstyle={[4]\typestyle},
+    literate=,
 }
 
 \lstdefinestyle{mypy}{
@@ -675,3 +693,14 @@
     \tableofcontents \egroup}
 }
 
+
+%%% highlight line
+\RequirePackage{_lstlinebgrd}
+\def\line#1{\ifnum\value{lstnumber}=#1\color{thmBgC}\fi}
+\def\lineC#1#2{\ifnum\value{lstnumber}=#1\color{#2}\fi}
+\def\lineD#1{\ifnum\value{lstnumber}=#1\color{thmBgC!90!black}\fi}
+\def\lines#1#2{\ifnum\value{lstnumber}>#1
+    \ifnum\value{lstnumber}<#2
+        \color{thmBgC}
+    \fi
+\fi\line{#1}\line{#2}}

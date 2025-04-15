@@ -33,12 +33,13 @@
 \def\firstToLowA#1#2!!{\MakeLowercase{#1}#2}
 
 \if@ref@bib@is
-    \usepackage[
-        style=apa,
-        bibstyle=authoryear, 
-        backend=biber
-    ]{biblatex}
-    \addbibresource{refs.bib}
+    % \usepackage[
+    %     style=apa,
+    %     bibstyle=authoryear, 
+    %     backend=biber
+    % ]{biblatex}
+    \usepackage[square,numbers]{natbib}
+    \bibliographystyle{plainnat}
 \fi
 
 \AtBeginDocument{%

@@ -40,3 +40,9 @@
 \newcommand{\subsectionautorefname}{}
 \newcommand{\subsubsectionautorefname}{}
 \newcommand*{\autoref}[1]{\nameref{#1}}
+
+
+\newcounter{beamerThmCntr}
+\AtBeginEnvironment{frame}{\setcounter{beamerThmCntr}{\value{thmcntr}}}
+\newcommand\resetthms{\setcounter{thmcntr}{\value{beamerThmCntr}}}
+

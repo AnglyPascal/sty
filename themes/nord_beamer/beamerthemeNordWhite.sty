@@ -17,9 +17,11 @@
 \setbeamertemplate{itemize item}{$\blacksquare$}
 \setbeamertemplate{itemize subitem}{$\blacksquare$}
 \setbeamertemplate{itemize subsubitem}{$\blacksquare$}
+
+
 \setbeamertemplate{frametitle}{
     \vspace{.5em}
-    {\usebeamercolor[fg]{normal text} \mdseries >> }~\boldmath\insertframetitle%
+    {\usebeamercolor[fg]{frametitle} {\mbox{\small${\blacksquare}$}}}~\boldmath\insertframetitle%
     \hfill\ifx\insertframesubtitle\@empty
     \else{\usebeamerfont{framesubtitle}\usebeamercolor[fg]{framesubtitle}\insertframesubtitle}\fi
 }
