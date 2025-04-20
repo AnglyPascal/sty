@@ -1,16 +1,7 @@
 \ProvidesPackage{_enum}
-
 \ProcessOptions\relax
 
 \usepackage[inline, shortlabels]{enumitem}
-
-\newlist{arabicEnum}{enumerate}{1}
-\newlist{romanEnum}{enumerate}{1}
-\newlist{alphEnum}{enumerate}{1}
-
-\setlist[arabicEnum]{label=(\arabic*), nosep}
-\setlist[romanEnum]{label=(\roman*), nosep}
-\setlist[alphEnum]{label=(\alph*), nosep}
 
 \setlist[enumerate]{
     label=(\roman*), 

@@ -181,3 +181,22 @@
 
 \newenvironment{talign} {\let\displaystyle\textstyle\align} {\endalign}
 \newenvironment{talign*} {\let\displaystyle\textstyle\csname align*\endcsname} {\endalign}
+
+
+%%%% overline modification
+\usepackage{stackengine}
+\usepackage{scalerel}
+
+\stackMath  % Enables math stacking in stackengine
+
+% Math-style-aware tight overline
+\newcommand\tightoverline[1]{%
+  \ThisStyle{%
+    \setbox0=\hbox{$\SavedStyle#1$}%
+    \stackon[1pt]{\copy0}{\rule{\wd0}{0.65pt}}%
+  }%
+}
+
+\NewCommandCopy\oldoverline\overline
+\renewcommand{\overline}[1]{\tightoverline{#1}}
+
