@@ -4,7 +4,7 @@
 \DeclareOption{bib}{\@ref@bib@istrue}
 
 \newif\if@ref@cap@is \@ref@cap@isfalse
-\DeclareOption{refcap}{\@ref@bib@istrue}
+\DeclareOption{refcap}{\@ref@cap@istrue}
 
 \ProcessOptions\relax
 
@@ -26,7 +26,7 @@
 \numberwithin{equation}{section}
 
 
-\if@ref@bib@is
+\if@ref@cap@is
 % TODO move to some other file
 \usepackage{mfirstuc}
 \def\firstToLow#1{\expandafter\firstToLowA#1!!}
@@ -102,11 +102,14 @@
     \endgroup
   }%
 }%
+
 \else
     \let\fucnameref\nameref
     \let\ucnameref\nameref
     \let\lcnameref\nameref
 \fi
+
+
 
 
 \NewCommandCopy\oldautoref\autoref
@@ -131,9 +134,9 @@
 % TODO: understand how expanding works
 \renewcommand{\nameref}[2][]{%
     \ifthenelse{\equal{#1}{}} {%
-        \oldnameref{#2}%
+        \lcnameref{#2}%
     }{%
-        \oldnameref{#1-#2} (\hrefpdf{#1}{#2})%
+        \lcnameref{#1-#2}% (\hrefpdf{#1}{#2})%
     }%
 }
 

@@ -62,9 +62,11 @@
 }
 
 %%% conditionally insert list of todos
-\AtEndDocument{\ifsometodo\label{some:todo:was:used}\fi} 
-\renewcommand{\listoftodos}{\@ifundefined{r@some:todo:was:used}{}{\listoftodos}}%
-%%% FIXME doesn't work yet, look into it later
+%% FIXME: gets erased after second compile
+% \AtEndDocument{\ifsometodo\label{some:todo:was:used}\fi} 
+\NewCommandCopy\oldlistoftodos\listoftodos
+% \renewcommand{\listoftodos}{\@ifundefined{r@some:todo:was:used}{}{\oldlistoftodos}}%
+\renewcommand{\listoftodos}{{\setlength{\parskip}{0pt}\oldlistoftodos}}%
 
 \newcommand{\listnotesname}{\Large Important Notes}
 \newlistof{notes}{note}{\listnotesname}

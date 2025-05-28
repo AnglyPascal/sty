@@ -48,7 +48,7 @@
     }{% 
         \edef\numbering{sibling=#3}
     }%
-    \edef\default{style=#2style, name=\uppercasefirst{#1}, \numbering}
+    \edef\default{style=#2style, name=\uppercasefirst{#1}, \numbering, refname=\uppercasefirst{#1}}
     \ifthenelse{\isempty{#4}}{%
         \edef\opt{\default}
     }{%
@@ -72,6 +72,10 @@
 \newcounter{thmcntr}[section]
 \counterwithin{thmcntr}{section}
 
+%%%% fix by chatgpt to avoid 
+%%% warning (pdf backend): ignoring duplicate destination with the name 'theorem*Base.5'
+\renewcommand{\theHthmcntr}{\thethmcntr}
+
 \definetheorem{theorem}{thm}{thmcntr}{}
 \definetheorem{lemma}{thm}{thmcntr}{}
 \definetheorem{proposition}{thm}{thmcntr}{}
@@ -90,8 +94,11 @@
 \definetheorem{notation}{example}{thmcntr}{}
 \definetheorem{fact}{example}{thmcntr}{}
 
+\renewcommand{\theHequation}{\thesection.\arabic{equation}}
 
 \newcounter{probcntr}[section]
+\renewcommand{\theHprobcntr}{\theprobcntr}
+
 \definetheorem{problem}{example}{probcntr}{}
 
 \newcommand{\probcntrWithin}[1]{
@@ -158,42 +165,20 @@
 \let\oldboxed\boxed
 \renewcommand\boxed[1]{\Boxed{#1}}
 
-
 \theoremstyle{solnstyle}
 
-\declaretheorem[numbered=no, name=Partial Solution]{partsoln}
-
 \newtcolorbox{idea}{ solnColors=solC!90!pageC, solnSpacing=1, solnBorders }
-
 \theoremstyle{solnDefStyle}
-
-\declaretheorem[numbered=no, name=Definition]{soldef}
-\declaretheorem[numbered=no, name=Lemma]{sollem}
-
-\tcolorboxenvironment{sollem*}{
-    coltext=solC, blanker, breakable, left=1em,
-    before skip=20pt, after skip=20pt,
-    borderline west={.2em}{1pt}{thmC!80},
-}
-\tcolorboxenvironment{soldef*}{
-    coltext=solC, blanker, breakable, left=1em,
-    before skip=20pt, after skip=20pt,
-    borderline west={.1em}{0pt}{black!80},
-}
 
 \let\quote\undefined
 \let\endquote\undefined
 \newtcolorbox{quote}{
-    blanker, breakable, 
-    left=2em, right=2em,
-    % before skip=\envskip, after skip=\envskip, 
-    fontupper=\itshape,
+    blanker, 
+    quote,
 }
 \newtcolorbox{quote*}{
-    colback=thmBgC, tile, breakable, 
-    left=2em, right=2em,
-    % before skip=\envskip, after skip=\envskip, 
-    fontupper=\itshape,
+    colback=thmBgC, tile, 
+    quote,
 }
 
 

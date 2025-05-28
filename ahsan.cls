@@ -144,7 +144,7 @@
 \fi
 
 %%% Load theorems
-\RequirePackage[\ahsan@theorems]{_theorems}
+\RequirePackage{_theorems}
 
 %%% Load headers and footers
 \RequirePackage[\ahsan@hdr]{_header_footer}
